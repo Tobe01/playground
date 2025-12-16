@@ -12,8 +12,9 @@
     <script src="https://unpkg.com/supersimpledev/babel.js"></script>
     <script type="text/babel">
 
+      // Input Component
       function ChatInput(){
-        return (
+        return(
           <>
            <input placeholder="Send a message to Chatbot" size="30" />
            <button>Send</button>
@@ -21,41 +22,18 @@
         )
       }
 
-      // this is the shortest way for assigning props
-      function ChatMessage({ message, sender}){
-
-      // this is a more lenghty way for assigning props
-
-        /*const message = props.message;
-        const sender = props.sender;*/
-      
-      // This is a bit shorter way of assigner props
-
-         /*const { message, sender } = props;*/
-      
-      // this is a longer way for using if/else statement in React
-        /*if(sender === "robot"){
-          return(
-            <div>
-              <img src="robot.png" width="50" />
-              {message}
-            </div>
-          )
-        }
-        */
-
-        // this is a shorter way for using if/else statements in React
-        return (
+      // Chat Component
+      function ChatMessage({message, sender}){
+        return(
           <div>
-           { sender === "robot" && <img src="robot.png" width="50" /> }
+           {sender === "robot" && (<img src="robot.png" width="50" />)}
            {message}
-           { sender === "user" &&  <img src="user.png" width="50" /> }
+           {sender === "user" && (<img src="user.png" width="50" />)}
           </div>
-          )
-        }
+        )
+      }
 
-
-
+      // Chat Messages Component
       function ChatMessages(){
           const chatMessages = [{
             message: 'hello chatbot',
@@ -63,52 +41,60 @@
             id: 'id1'
           }, {
             message: 'Hello! How can I help you?',
-            sender: 'robot',
+            sender: 'robot'
+          }, {
+            message: 'what is todays date',
+            sender: 'user',
             id: 'id2'
           }, {
-            message: 'what is today?',
-            sender: 'user',
+            message: 'Today is December 15',
+            sender: 'robot',
             id: 'id3'
           }, {
-            message: 'Today is December 11',
-            sender: 'robot',
+            message: 'how about flip coin',
+            sender: 'user',
             id: 'id4'
-          }];
+          }, {
+            message: 'Sure! You got tails',
+            sender: 'robot',
+            id: 'id5'
+          }, {
+            message: 'okay',
+            sender: 'user',
+            id: 'id6'
+          }]
 
-        return(
-          <>
-            {chatMessages.map((chatMessage)=>{
-                return(
-                  <ChatMessage 
-                    message={chatMessage.message}
-                    sender={chatMessage.sender}
-                    key={chatMessage.id}
-                  />
-                )
+          
+          return(
+            <>
+              {chatMessages.map((chatMessage)=>{
+                  return(
+                      <ChatMessage 
+                        message={chatMessage.message}
+                        sender={chatMessage.sender}
+                        key={chatMessage.id}
+                      />
+                    )
               })}
-          </>
-        );
+            </>
+          );
 
       }
 
 
-    //  Added app in a component
+      // Main App Component
       function App(){
-          return (
+        return(
            <>
             <ChatInput />
             <ChatMessages />
            </>
-          );
+         );
       }
 
-    // removed app from a variable
-      // const app = (
-        
-      // )
-      
+     
       const container = document.querySelector('.js-container');
-      ReactDOM.createRoot(container).render(<App />);
+      ReactDOM.createRoot(container).render(<App />)
 
     </script>
   </body>
