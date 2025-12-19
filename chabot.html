@@ -34,10 +34,9 @@
       }
 
       // Chat Messages Component
-      function ChatMessages(){
-
-        // save data in state and save state in an array variable
-        const array = React.useState([{
+      function ChatMessages(){ 
+      // add chatmessage in use state and save usestate in an array variable
+       const array = React.useState([{
             message: 'hello chatbot',
             sender: 'user',
             id: 'id1'
@@ -65,40 +64,38 @@
             message: 'okay',
             sender: 'user',
             id: 'id7'
-          }] );
-        const chatMessages = array[0];
-        const setChatMessages = array[1];
+          }]);
+       const chatMessages = array[0];
+       const setChatMessage = array[1];
 
-        // render saved data in a function using the spread operator
-        function sendMessage(){
-          setChatMessages([
-            ...chatMessages,
-            {
-              message: 'Hello State',
-              sender: 'user',
-              id: crypto.randomUUID()
-            }
-          ])
-        }
-          
-          return(
-            <>
-              <button onClick={sendMessage}>Send Message</button>
-
-              {chatMessages.map((chatMessage)=>{
-                  return(
-                      <ChatMessage 
-                        message={chatMessage.message}
-                        sender={chatMessage.sender}
-                        key={chatMessage.id}
-                      />
-                    )
-              })}
-            </>
-          );
-
+      // fetch chatmessage using the spread operator (...)
+      function sendMessage(){
+        setChatMessage([
+          ...chatMessages,
+          {
+            message: 'hello',
+            sender: 'user',
+            id: crypto.randomUUID()
+          }
+        ])
       }
 
+      return(
+        <>
+        <button onClick={sendMessage}>Send Message</button>
+          {chatMessages.map((chatMessage)=>{
+              return(
+                  <ChatMessage 
+                    message={chatMessage.message}
+                    sender={chatMessage.sender}
+                    key={chatMessage.id}
+                  />
+                )
+          })}
+        </>
+      );
+
+    }
 
       // Main App Component
       function App(){
