@@ -12,17 +12,33 @@
     <script src="https://unpkg.com/supersimpledev/babel.js"></script>
     <script type="text/babel">
 
-      function Todo(){
+      function Todo({todoItems, setTodoItems}){
+
+        const [ todoInput, setTodoInput] = React.useState('')
         
-        function displayTodo(event){
-          const contents = event.target.value;
+        function fetchInput(event){
+          setTodoInput(event.target.value);
         }
+
+        function renderTodo(){
+            setTodoItems([
+              ...todoItems,
+              {
+                message: todoInput,
+                id: crypto.randomUUID()
+              }
+            ])
+          }
 
         return(
           <div>
             <p>To-Do List</p>
-            <input onChange={displayTodo} placeholder="Add a new task" size="30" />
-            <button>Add</button>
+            <input placeholder="Add a new task" size="30" 
+             onChange={fetchInput}
+            />
+            <button
+             onClick={renderTodo}
+            >Add</button>
           </div> 
         )
       }
@@ -37,28 +53,9 @@
         )
       }
 
-      function TodoItems(){
-        // add data in React Use state
-
-        const [ todoItems, setTodoItems] = React.useState([{
-            message: 'Learn React',
-            id: 'id1'
-          }]);
-
-
-          function renderTodo(){
-            setTodoItems([
-              ...todoItems,
-              {
-                message: 'hello',
-                id: 'id2'
-              }
-            ])
-          }
-
+      function TodoItems({todoItems}){
           return(
           <>
-          <button onClick={renderTodo}>Send Todo</button>
             {todoItems.map((todoItem)=>{
                 return(
                   <List 
@@ -73,12 +70,24 @@
       }
 
     function App(){
+      // add data in React Use state
+        const [ todoItems, setTodoItems] = React.useState([{
+            message: 'Learn React',
+            id: crypto.randomUUID()
+          }]);
+
+
         return(
           <div style={{backgroundColor: 'green', 
             maxWidth: '300px', display: 'flex', 
             flexDirection: 'column'}}>
-              <Todo />
-              <TodoItems />
+              <Todo 
+                todoItems={todoItems}
+                setTodoItems={setTodoItems}
+              />
+              <TodoItems
+                todoItems={todoItems}
+              />
           </div>
         )
       }
