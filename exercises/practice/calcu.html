@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Calcu</title>
+  </head>
+  <body>
+
+    <div class="js-container"></div>
+
+
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    <script type="text/babel">
+
+      function Calculator(){
+        return(
+          <div>
+            <h1>React Calculator App</h1> 
+          </div> 
+        )
+      }
+
+      function Body(){
+        const [count, setCount] = React.useState(0);
+
+        function plusOne(num){
+          setCount( count === 0 ? count + 1 : count + num );
+        }
+
+        function plusTwo(num){
+          setCount( count === 0 ? count + 2 : count + num );
+        }
+
+        function plus(num){
+          setCount( count === 0 ? count ++ : count + num );
+        }
+
+        function calculate(){
+          const total = eval(count);
+          setCount(String(Number(total.toFixed(1))));
+        }
+
+        function clearCount(){
+          setCount(0)
+        }
+
+        function times(num){
+          setCount( count === 0 ? count += '*' : count + num );
+        }
+
+        function percentage(num){
+          setCount( count === 0 ? count += '%' : count + num );
+        }
+
+        function divide(num){
+          setCount( count === 0 ? count += '/' : count + num );
+        }
+
+        function plusSeven(num){
+          setCount( count === 0 ? count + 7 : count + num );
+        }
+
+        function plusThree(num){
+          setCount( count === 0 ? count + 3 : count + num );
+        }
+        
+        function plusEight(num){
+          setCount( count === 0 ? count + 8 : count + num );
+        }
+
+        function plusNine(num){
+          setCount( count === 0 ? count + 9 : count + num );
+        }
+
+        function plusFour(num){
+          setCount( count === 0 ? count + 4 : count + num );
+        }
+
+        function plusFive(num){
+          setCount( count === 0 ? count + 5 : count + num );
+        }
+
+        function plusSix(num){
+          setCount( count === 0 ? count + 6 : count + num );
+        }
+
+        function plusZero(num){
+          setCount( count === 0 ? count + 0 : count + num );
+        }
+
+        function dot(num){
+          setCount( count === 0 ? count += '.' : count + num );
+        }
+
+        function minu(num){
+          setCount( count === 0 ? count += '-' : count + num)
+        }
+
+
+        return(
+          <div>
+            <div style={{backgroundColor: 'white', boxShadow: '5px 5px 10px 0 rgba(0, 0, 0, 0.5)', width: '200px', padding: '0 15px', height: '325px', borderRadius: '17px',  gap: '5px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}>
+              <div style={{backgroundColor: 'orange', height: '90%'}}>  
+                <div style={{backgroundColor: 'grey', color: 'white', padding: '5px 10px 5px 0', borderRadius: '8px', marginBottom: '10px'}}>
+                  <p style={{fontSize: '40px', margin: '0', padding: '0', margin: 'auto', display: 'flex', alignItems: 'flex-end', justifyContent: 'flex-end'}}>{count}</p>
+                </div>
+              
+                <div style={{backgroundColor: 'pink', width: '100%', display: 'flex', justifyContent: 'space-between', marginBottom: '7px'}}>
+                  <button style={{borderRadius: '5px', border: 'none', padding: '5px 15px 5px 15px', fontSize: '20px'}} onClick={clearCount}>AC</button>
+                  <button style={{borderRadius: '5px', border: 'none', padding: '5px 20px 5px 20px', fontSize: '20px'}}  onClick={() => times('*')}>x</button>
+                  <button style={{borderRadius: '5px', border: 'none', padding: '5px 15px 5px 15px', fontSize: '20px'}}  onClick={() => percentage('%')}>%</button>
+                  <button style={{borderRadius: '5px', border: 'none', padding: '5px 20px 5px 20px', fontSize: '20px'}}  onClick={() => divide('/')}>/</button>
+                </div> 
+
+                <div style={{backgroundColor: 'green', display: 'flex', justifyContent: 'space-between', width: '100%', marginBottom: '7px'}}>
+                  <button style={{borderRadius: '5px', border: 'none', padding: '5px 15px 5px 15px', fontSize: '20px'}} onClick={() => plusSeven('7')}>7</button>
+                  <button style={{borderRadius: '5px', border: 'none', padding: '5px 15px 5px 15px', fontSize: '20px'}} onClick={() => plusEight('8')}>8</button>
+                  <button style={{borderRadius: '5px', border: 'none', padding: '5px 15px 5px 15px', fontSize: '20px'}} onClick={() => plusNine('9')}>9</button>
+                  <button style={{borderRadius: '5px', border: 'none', padding: '5px 15px 5px 15px', fontSize: '20px'}} onClick={() => plus('+')}>+</button>
+                </div> 
+
+                <div style={{backgroundColor: 'pink', width: '100%', display: 'flex', justifyContent: 'space-between', marginBottom: '7px'}}>
+                  <button style={{borderRadius: '5px', border: 'none', padding: '5px 15px 5px 15px', fontSize: '20px'}} onClick={() => plusFour('4')}>4</button>
+                  <button style={{borderRadius: '5px', border: 'none', padding: '5px 15px 5px 15px', fontSize: '20px'}} onClick={() => plusFive('5')}>5</button>
+                  <button style={{borderRadius: '5px', border: 'none', padding: '5px 15px 5px 15px', fontSize: '20px'}} onClick={() => plusSix('6')}>6</button>
+                  <button style={{borderRadius: '5px', border: 'none', padding: '5px 15px 5px 15px', fontSize: '20px'}} onClick={() => minu('-')}>-</button>
+                </div> 
+
+                <div style={{display: 'flex', width: '100%'}}>
+                  <div style={{display: 'flex', flexDirection: 'column', width: '100%'}}>
+                    <div style={{backgroundColor: 'pink', width: '100%', display: 'flex', justifyContent: 'space-between', marginBottom: '7px' }}>
+                      <button style={{borderRadius: '5px', border: 'none', padding: '5px 15px 5px 15px', fontSize: '20px'}} onClick={() => plusOne('1')}>1</button>
+                      <button style={{borderRadius: '5px', border: 'none', padding: '5px 15px 5px 15px', fontSize: '20px'}} onClick={() => plusTwo('2')}>2</button>
+                      <button style={{borderRadius: '5px', border: 'none', padding: '5px 15px 5px 15px', fontSize: '20px'}} onClick={() => plusThree('3')}>3</button>
+                    </div>
+                    <div style={{display:'flex', gap: '5px', backgroundColor: 'green'}}>
+                      <button style={{borderRadius: '5px', border: 'none', padding: '5px 15px 5px 15px', fontSize: '20px'}}  onClick={() => plusZero('0')}>0</button>
+                      <button style={{borderRadius: '5px', border: 'none', padding: '5px 15px 5px 15px', fontSize: '20px'}}  onClick={() => dot('.')}>.</button>
+                    </div>
+                  </div>
+
+                  <button style={{borderRadius: '5px', border: 'none', padding: '5px 15px 5px 15px', fontSize: '20px'}} onClick={calculate}>=</button>
+                </div>
+              
+              </div>
+            </div>
+          </div> 
+        )
+      }
+
+      function App(){
+        return(
+          <>
+           <Calculator />
+           <Body />
+          </>
+        )
+      }
+
+
+      const container = document.querySelector('.js-container');
+      ReactDOM.createRoot(container).render(<App />);
+    </script>
+
+  </body>
+</html>
