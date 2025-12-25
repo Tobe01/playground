@@ -6,10 +6,11 @@
     <style>
         body{
          font-family: Arial;
+         height: 100vh;
         }
 
         .appContainer{
-          max-width: 640px;
+          max-width: 600px;
           margin: 0 auto;
         }
 
@@ -17,8 +18,18 @@
           display: flex;
         }
 
+        .moveText{
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: rgb(25, 135, 84);
+          margin-top: 8px;
+          text-decoration: underline;
+          cursor: pointer;
+        }
+
         .inputField{
-          border: 1px solid;
+          border: 1px solid grey;
           padding: 13px;
           border-radius: 10px;
           font-size: 16px;
@@ -126,21 +137,34 @@
           { event.key === "Escape" ?  setInputText('') : ''}
         }
 
-        return(
-          <div className="input-container">
-            <input placeholder="Send a message to Chatbot" size="30"
-              className="inputField"  
-            
-              onChange={fetchMessage}
-              value={inputText}
-              onKeyDown={enterKey}
-            />
-            <button
-              className="sendButton"
+        const [ content, setContent ] = React.useState('Move textbox to bottom');
 
-              onClick={sendMessage}
-            >Send</button>
-          </div>
+        function updateContent(){
+          setContent ( content === "Move textbox to bottom" ? "Move textbox to top" : "Move textbox to bottom" );
+        }
+
+        return(
+          <>
+            <div className="input-container">
+              <input placeholder="Send a message to Chatbot" size="30"
+                className="inputField"  
+              
+                onChange={fetchMessage}
+                value={inputText}
+                onKeyDown={enterKey}
+              />
+              <button
+                className="sendButton"
+
+                onClick={sendMessage}
+              >Send</button>
+            </div>
+            <div className="moveText">
+              <p
+               onClick={updateContent}
+              >{content}</p>
+            </div>
+          </>
         )
       }
 
