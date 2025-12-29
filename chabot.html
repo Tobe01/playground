@@ -208,6 +208,19 @@
     <script src="https://unpkg.com/supersimpledev/babel.js"></script>
     <script type="text/babel">
 
+      // Custom hook
+      function useAutoScroll(dependencies){
+        const chatMessageRef = React.useRef(null);
+
+        React.useEffect(() =>{
+          const chatMessageElem = chatMessageRef.current;
+
+          { chatMessageElem ? chatMessageElem.scrollTop = chatMessageElem.scrollHeight : ''}
+        }, dependencies);
+
+        return chatMessageRef;
+      }
+
       // Input Component
       function ChatInput({ chatMessages, setChatMessage}){
 
@@ -306,16 +319,10 @@
         )
       }
 
-      // Chat Messages Component
-      function ChatMessages({chatMessages}){ 
-
-        const chatMessageRef = React.useRef(null);
-
-        React.useEffect(() =>{
-          const chatMessageElem = chatMessageRef.current;
-
-          { chatMessageElem ? chatMessageElem.scrollTop = chatMessageElem.scrollHeight : ''}
-        });
+      // ChatMessages Component
+      function ChatMessages({chatMessages}){
+        
+        const chatMessageRef = useAutoScroll([chatMessages]);
 
           return(
            <div className="chat-message-container"
@@ -364,7 +371,7 @@
          );
       }
 
-    //  Render React srcipt
+      //  Render React srcipt
       const container = document.querySelector('.js-container');
       ReactDOM.createRoot(container).render(<App />)
 
