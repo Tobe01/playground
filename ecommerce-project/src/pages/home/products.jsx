@@ -79,7 +79,7 @@ export function Products({product, getAppData}) {
         </div>
       )}
 
-      <button className="add-to-cart-button button-primary" onClick={updateCart} >
+      <button className="add-to-cart-button button-primary" data-testid="add-to-cart-button" onClick={updateCart} >
         Add to Cart
       </button>
     </div>
