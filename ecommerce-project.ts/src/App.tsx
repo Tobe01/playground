@@ -1,35 +1,49 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import axios from 'axios';
+import { useState, useEffect } from 'react';
+import { Routes, Route } from 'react-router';
+import { HomePage } from './pages/home/HomePage';
+import { Checkout } from './pages/checkout/CheckoutPage';
+import { Orders } from './pages/orders/OrdersPage';
+import { Tracking } from './pages/TrackingPage';
+import { ErrorPage } from './pages/ErrorPage';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [ cart, setCart ] = useState([]);
+
+  window.axios = axios;
+
+  // Fetching Data from Backend using Async/Await
+  async function getAppData(){
+      const response = await axios.get('/api/cart-items?expand=product')
+      setCart(response.data);
+    }
+  
+  useEffect(()=>{
+    getAppData();
+  }, []);
+
+  // Fetching Data from Backend using Promise
+  /*useEffect(()=>{
+    axios.get('/api/cart-items?expand=product')
+      .then((res)=>{
+        setCart(res.data);
+    });
+  }, [])*/
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+     <Routes>
+      {/* Pages */}
+      <Route index element={<HomePage cart={cart} getAppData={getAppData} />} />
+      <Route path="Checkout" element={<Checkout cart={cart} getAppData={getAppData} />} />
+      <Route path="Orders" element={<Orders cart={cart} getAppData={getAppData} />} />
+      <Route path="tracking/:orderId/:productId" element={<Tracking />} />
+
+      {/* route path to 404 error page */}
+      <Route path="*" element={<ErrorPage />} />
+     </Routes>
     </>
   )
 }
 
-export default App
+export default App;

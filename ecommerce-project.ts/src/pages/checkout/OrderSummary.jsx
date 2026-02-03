@@ -1,0 +1,31 @@
+import { DeliveryOptions } from './DeliveryOptions';
+import { DeliveryDate } from './DeliveryDate';
+import { CartItemDetails } from './CartItemDetails';
+
+export function OrderSummary({deliveryOptions, cart, getAppData}) {
+  return (
+    <div className="order-summary">
+      {deliveryOptions.length > 0 &&
+        cart.map((cartItem) => {
+          const selectedDeliveryOption = deliveryOptions.find(
+            (deliveryOptions) => {
+              return deliveryOptions.id === cartItem.deliveryOptionId;
+            },
+          );
+
+          return (
+            <div key={cartItem.productId} className="cart-item-container">
+              <DeliveryDate selectedDeliveryOption={selectedDeliveryOption} deliveryOptions={deliveryOptions} />
+
+              <div className="cart-item-details-grid">
+                <CartItemDetails cartItem={cartItem} getAppData={getAppData} />
+
+                <DeliveryOptions deliveryOptions={deliveryOptions} cartItem={cartItem} getAppData={getAppData} />
+
+              </div>
+            </div>
+          );
+        })}
+    </div>
+  );
+}
