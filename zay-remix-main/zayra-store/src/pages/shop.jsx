@@ -185,7 +185,7 @@ export function Shop() {
                 {shopData.map((shopItems) => {
                   return (
                     <ShopCard
-                      key={shopItems.id}
+                      shopId={shopItems.id}
                       image1={shopItems.images.image1}
                       image2={shopItems.images.image2}
                       image3={shopItems.images.image3}

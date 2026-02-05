@@ -1,9 +1,15 @@
+import { useState } from 'react';
 import "./shop.css";
 import "../media-queries/shop.css";
 
-export function ShopCard({key, image1, image2, image3, itemName, itemDescription, priceCents, btn1, btn2, btn3, star, count, reviews, itemCategory, productDesc }) {
+export function ShopCard(
+  {shopId, image1, image2, image3, itemName, 
+   itemDescription, priceCents, btn1, btn2,
+   btn3, star, count, reviews, itemCategory, productDesc }) {
+
+    
   return (
-    <div key={key} className="card-item-container">
+    <div key={shopId} className="card-item-container">
       <div className="topImg-container">
         <img
           src={`images/shopItems/${image1}`}
