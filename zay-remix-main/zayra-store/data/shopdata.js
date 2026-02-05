@@ -1,6 +1,6 @@
 // Shop Data
 export const shopData = [{
-  id: 1,
+  id: crypto.randomUUID(),
   images: {
     image1: '2149684322.webp',
     image2: '2149684359.webp',
@@ -23,7 +23,7 @@ export const shopData = [{
   productDesc: 'Light weight & soft fabric for breathable and comfortable wearing. And Solid stitched shirts with round neck made for durability and a great fit for casual fash.'
 },
 {
-  id: 2,
+  id: crypto.randomUUID(),
   images: {
     image1: 'shyam-mishra-QqQfx-8BtXg-unsplash.webp',
     image2: 'shyam-mishra-pHEUEz8tgs0-unsplash.webp',
@@ -45,7 +45,7 @@ export const shopData = [{
   itemCategory: "men's clothing",
   productDesc: 'Light fabric crafted for warm weather and easy movement.'
 }, {
-  id: 3,
+  id: crypto.randomUUID(),
   images: {
     image1: '59174.webp',
     image2: '57792.webp',
@@ -67,7 +67,7 @@ export const shopData = [{
   itemCategory: "women's clothing",
   productDesc: 'Soft denim with breathable stretch for daily casual comfort.'
 },  {
-  id: 4,
+  id: crypto.randomUUID(),
   images: {
     image1: '31633.webp',
     image2: '31649.webp',
@@ -89,7 +89,7 @@ export const shopData = [{
   itemCategory: "women's clothing",
   productDesc: 'Light cotton fabric designed for easy wear and regular movement.'
 },  {
-  id: 5
+  id: crypto.randomUUID(),
   images: {
     image1: '2149085823.webp',
     image2: '2149085833.webp',
@@ -111,7 +111,7 @@ export const shopData = [{
   itemCategory: "kid's clothing",
   productDesc: 'Warm knit texture made for comfort and fitted modern style.'
 },  {
-  id: 6,
+  id: crypto.randomUUID(),
   images: {
     image1: 'daniyal-ahmed-A2ilNniJdug-unsplash.webp',
     image2: 'daniyal-ahmed-MMvjZhK_mMQ-unsplash.webp',
@@ -133,7 +133,7 @@ export const shopData = [{
   itemCategory: "women's clothing",
   productDesc: 'Lightweight shell for easy layering and all-day coverage.'
 },  {
-  id: 7,
+  id: crypto.randomUUID(),
   images: {
     image1: '2148123930.webp',
     image2: '2148124073.webp',
@@ -155,7 +155,7 @@ export const shopData = [{
   itemCategory: "men's clothing",
   productDesc: 'Soft flowy fabric designed for casual summer and evening wear.'
 },  {
-  id: 8,
+  id: crypto.randomUUID(),
   images: {
     image1: '2148448892.webp',
     image2: '2148448870.webp',
@@ -177,7 +177,7 @@ export const shopData = [{
   itemCategory: "men's clothing",
   productDesc: 'Quick-dry material offering breathable comfort for workouts.'
 },  {
-  id: 9,
+  id: crypto.randomUUID(),
   images: {
     image1: '2149137839.webp',
     image2: '2149137838.webp',
@@ -199,7 +199,7 @@ export const shopData = [{
   itemCategory: "men's clothing",
   productDesc: 'Light airy fabric ideal for warm weather and casual styling.'
 },  {
-  id: 10,
+  id: crypto.randomUUID(),
   images: {
     image1: 'giorgio-trovato-_0n2OqRTzKA-unsplash.webp',
     image2: 'giorgio-trovato-RrNKFfM9jJI-unsplash.webp',
@@ -221,7 +221,7 @@ export const shopData = [{
   itemCategory: "men's clothing",
   productDesc: 'Soft cotton-blend with added stretch for daily movement.'
 },  {
-  id: 11,
+  id: crypto.randomUUID(),
   images: {
     image1: 'precious-madubuike-YfZ7vA6-Uik-unsplash.webp',
     image2: 'dylann-hendricks-JZDIy69uDRc-unsplash.webp',
@@ -243,7 +243,7 @@ export const shopData = [{
   itemCategory: "women's clothing",
   productDesc: 'Warm thick knit designed for relaxed fit and cool weather use.'
 },  {
-  id: 12,
+  id: crypto.randomUUID(),
   images: {
     image1: 'md-ishak-raman-8GjW6tAHgRM-unsplash.webp',
     image2: 'md-ishak-raman-ekROGLQgdSE-unsplash.webp',
@@ -265,7 +265,7 @@ export const shopData = [{
   itemCategory: "women's clothing",
   productDesc: 'Soft lining built for light warmth and everyday wear.'
 },  {
-  id: 13,
+  id: crypto.randomUUID(),
   images: {
     image1: 'philip-blystone-yUx3RlXxe_M-unsplash.webp',
     image2: 'philip-blystone-kMH9cuydbRo-unsplash.webp',
@@ -287,7 +287,7 @@ export const shopData = [{
   itemCategory: "men's clothing",
   productDesc: 'Smooth satin texture shaped for elegant night outings.'
 },  {
-  id: 14,
+  id: crypto.randomUUID(),
   images: {
     image1: 'ryan-plomp-76w_eDO1u1E-unsplash.webp',
     image2: 'sahand-babali-U2JtujrbGM8-unsplash.webp',
@@ -309,7 +309,7 @@ export const shopData = [{
   itemCategory: "men's clothing",
   productDesc: 'Warm fleece build for relaxed everyday comfort.'
 },  {
-  id: 15,
+  id: crypto.randomUUID(),
   images: {
     image1: '2149153334.webp',
     image2: '2149153333.webp',
@@ -331,7 +331,7 @@ export const shopData = [{
   itemCategory: "men's clothing",
   productDesc: 'Three-button henley placket, light weight & soft fabric for breathable and comfortable wearing. And Solid stitched shirts with round neck made for durability and a great fit for casual fash.'
 }, {
-  id: 16,
+  id: crypto.randomUUID(),
   images: {
     image1: 'prateek-saxena-5X31WriYvqY-unsplash.webp',
     image2: 'prateek-saxena-qayeCyZZGqU-unsplash.webp',
@@ -353,7 +353,7 @@ export const shopData = [{
   itemCategory: "women's clothing",
   productDesc: 'Soft fleece blend for daily layering and comfort.'
 },  {
-  id: 17,
+  id: crypto.randomUUID(),
   images: {
     image1: '13769.webp',
     image2: '13768.webp',
@@ -375,7 +375,7 @@ export const shopData = [{
   itemCategory: "kid's clothing",
   productDesc: 'Soft stretch knit shaping a fitted feminine silhouette.'
 },  {
-  id: 18,
+  id: crypto.randomUUID(),
   images: {
     image1: 'julian-lates-_cWae6ObQNs-unsplash.webp',
     image2: 'olaniyan-oluwapelumi-6yBa2rO4jh4-unsplash.webp',
@@ -397,7 +397,7 @@ export const shopData = [{
   itemCategory: "men's clothing",
   productDesc: 'Durable cotton cargo made for comfort and utility.'
 },  {
-  id: 19,
+  id: crypto.randomUUID(),
   images: {
     image1: 'danilo-capece-NoVnXXmDNi0-unsplash.webp',
     image2: 'omid-visuals-iSsXJ8USfTk-unsplash.webp',
@@ -419,7 +419,7 @@ export const shopData = [{
   itemCategory: "men's clothing",
   productDesc: 'Soft airy fabric styled with light lace accents.'
 },  {
-  id: 20,
+  id: crypto.randomUUID(),
   images: {
     image1: 'alsu-vershinina-OXWB4NSLjHo-unsplash.webp',
     image2: 'diego-castaneda-QA-yHvSFzOE-unsplash.webp',
@@ -441,7 +441,7 @@ export const shopData = [{
   itemCategory: "women's clothing",
   productDesc: 'Crisp cotton weave built for clean smart casual looks.'
 }, {
-  id: 21,
+  id: crypto.randomUUID(),
   images: {
     image1: '2148070384.webp',
     image2: '2148070389.webp',
@@ -463,7 +463,7 @@ export const shopData = [{
   itemCategory: "kid's clothing",
   productDesc: 'Light flowy build ideal for warm days and casual outings.'
 }, {
-  id: 22,
+  id: crypto.randomUUID(),
   images: {
     image1: '42471.webp',
     image2: '55679.webp',
@@ -485,7 +485,7 @@ export const shopData = [{
   itemCategory: "kid's clothing",
   productDesc: 'Soft stretch blend for comfort during light activity.'
 },  {
-  id: 23,
+  id: crypto.randomUUID(),
   images: {
     image1: 'tuananh-blue-2QSK4kFoVZE-unsplash.webp',
     image2: 'tuananh-blue-j_3IlDX-6uQ-unsplash.webp',
@@ -507,7 +507,7 @@ export const shopData = [{
   itemCategory: "men's clothing",
   productDesc: 'Light feel designed for warm days and simple styling.'
 },  {
-  id: 24,
+  id: crypto.randomUUID(),
   images: {
     image1: 'modupe-falade-BayzMQkraW4-unsplash.webp',
     image2: 'modupe-falade-GJ9ed5kqWqs-unsplash.webp',
@@ -529,7 +529,7 @@ export const shopData = [{
   itemCategory: "kid's clothing",
   productDesc: 'Light knit build created for regular layering comfort.'
 },  {
-  id: 25,
+  id: crypto.randomUUID(),
   images: {
     image1: '2149067157.webp',
     image2: '2149067155.webp',
@@ -551,7 +551,7 @@ export const shopData = [{
   itemCategory: "kid's clothing",
   productDesc: 'Soft ribbed fabric made for fitted warm-weather wear.'
 },  {
-  id: 26,
+  id: crypto.randomUUID(),
   images: {
     image1: '2149067092.webp',
     image2: '2149067094.webp',
@@ -573,7 +573,7 @@ export const shopData = [{
   itemCategory: "kid's clothing",
   productDesc: 'Cotton-blend built for daily comfort and breathable fit.'
 },  {
-  id: 27,
+  id: crypto.randomUUID(),
   images: {
     image1: '2149067066.webp',
     image2: '2149067064.webp',
@@ -595,7 +595,7 @@ export const shopData = [{
   itemCategory: "kid's clothing",
   productDesc: 'Soft linen design ideal for warm climates and casual looks.'
 },  {
-  id: 28,
+  id: crypto.randomUUID(),
   images: {
     image1: 'oscar-ramirez-SAfrvrXLuY8-unsplash.webp',
     image2: 'oscar-ramirez-ak8llrB9nvg-unsplash.webp',
@@ -617,7 +617,7 @@ export const shopData = [{
   itemCategory: "women's clothing",
   productDesc: 'Breathable mesh fabric ideal for training and movement.'
 },  {
-  id: 29,
+  id: crypto.randomUUID(),
   images: {
     image1: 'nathan-dumlao-AqWligQpYHM-unsplash.webp',
     image2: 'leon-skibitzki-mHUk4Se7peY-unsplash.webp',
@@ -639,7 +639,7 @@ export const shopData = [{
   itemCategory: "men's clothing",
   productDesc: 'Smooth satin for easy flow and elegant everyday wear.'
 },  {
-  id: 30,
+  id: crypto.randomUUID(),
   images: {
     image1: 'gab-mv-DaeFHBfw-unsplash.webp',
     image2: 'gab-rqZ0iZTvRJ8-unsplash.webp',

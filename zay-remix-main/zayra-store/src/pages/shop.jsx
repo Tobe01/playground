@@ -1,7 +1,7 @@
 import { Header } from "../components/header";
 import { Footer } from "../components/footer";
-import "./shop.css";
-import "../media-queries/shop.css";
+import { ShopCard } from "./shopcards";
+import { shopData } from "../../data/shopdata";
 
 export function Shop() {
   return (
@@ -182,67 +182,27 @@ export function Shop() {
               {/* <!-- Shop items called inside js --> */}
               <div className="item-container fade-in-up">
                 {/* <!-- All Shop Items rendered in JavaScript --> */}
-                <div className="card-item-container">
-                  <div className="topImg-container">
-                    <img
-                      src="images/shopItems/2149684322.webp"
-                      alt="item-images"
-                      loading="lazy"
-                      className="images"
+                {shopData.map((shopItems) => {
+                  return (
+                    <ShopCard
+                      key={shopItems.id}
+                      image1={shopItems.images.image1}
+                      image2={shopItems.images.image2}
+                      image3={shopItems.images.image3}
+                      itemName={shopItems.itemName}
+                      itemDescription={shopItems.itemDescription}
+                      priceCents={shopItems.priceCents}
+                      btn1={shopItems.colorPicker.btn1}
+                      btn2={shopItems.colorPicker.btn2}
+                      btn3={shopItems.colorPicker.btn3}
+                      star={shopItems.ratings.star}
+                      count={shopItems.ratings.count}
+                      reviews={shopItems.ratings.reviews}
+                      itemCategory={shopItems.itemCategory}
+                      productDesc={shopItems.productDesc}
                     />
-
-                    <img
-                      src="images/shopItems/2149684359.webp"
-                      alt="item-images"
-                      loading="lazy"
-                      className="images"
-                    />
-
-                    <img
-                      src="images/shopItems/2149684357.webp"
-                      alt="item-images"
-                      loading="lazy"
-                      className="images"
-                    />
-
-                    <div className="HoverDiv">
-                      View Item{" "}
-                      <img
-                        src="images/icons/arrow_outward_18dp_FFFFFF_FILL0_wght400_GRAD0_opsz20.svg"
-                        alt="arrowOutward"
-                      />
-                    </div>
-                  </div>
-
-                  <div className="bottomItem-container">
-                    <div className="bottomItem-top">
-                      <h1>Aaron Martinez</h1>
-                      <h3>
-                        Slim Stacked Flare Embroidered Strip Tricot Track Pants
-                      </h3>
-                    </div>
-                    <p>$22.30</p>
-                    <div className="colors-container">
-                      <button className="btn1">
-                        <img
-                          src="images/colors/brownish.webp"
-                          alt="colorPicker"
-                        />
-                      </button>
-
-                      <button className="btn1">
-                        <img
-                          src="images/colors/violet.webp"
-                          alt="colorPicker"
-                        />
-                      </button>
-
-                      <button className="btn1">
-                        <img src="images/colors/plain.webp" alt="colorPicker" />
-                      </button>
-                    </div>
-                  </div>
-                </div>
+                  );
+                })}
               </div>
             </div>
           </div>

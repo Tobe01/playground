@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { activateHamburger, closeWindow } from './drop-menu/dropdown';
+import { useState, useEffect } from "react";
 import "./header.css";
 import "./interval.css";
 import "./sub-header.css";
@@ -7,6 +8,28 @@ import "./subhover.css";
 import "../media-queries/header.css";
 
 export function Header() {
+
+  const [isChanged, setIsChanged] = useState(false);
+  const [inchange, setInchange] = useState("REFRESH, REVIVE, RECIRCULATE: RE-ZAY");
+
+  useEffect(()=>{
+    var interval = setInterval(()=>{
+      if (isChanged === false) {
+        setInchange("FAST SHIPPING FAST DELIVERY FREE RETURN");
+        setIsChanged(true);
+      } else {
+        setInchange("REFRESH, REVIVE, RECIRCULATE: RE-ZAY");
+        setIsChanged(false);
+      }
+    }, 2000);
+
+    return function () {
+      clearInterval(interval);
+    };
+  }, [isChanged]);
+
+
+
   return (
     <>
       <nav class="header-nav">
@@ -399,14 +422,8 @@ export function Header() {
 
         <div className="intervalContainer">
           <div className="interval-sub-container">
-            <div className="firstInterval">
-              <Link>FAST SHIPPING</Link>
-              <Link>FAST DELIVERY</Link>
-              <Link>FREE RETURN</Link>
-            </div>
-
             <div className="secondInterval">
-              <Link>REFRESH, REVIVE, RECIRCULATE: RE-ZAY &copy;</Link>
+              <Link>{inchange} &copy;</Link>
             </div>
           </div>
 
