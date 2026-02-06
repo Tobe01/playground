@@ -1,15 +1,16 @@
 import { useState } from 'react';
+import { ViewCard } from './viewcard';
 import "./shop.css";
 import "../media-queries/shop.css";
 
 export function ShopCard(
-  {shopId, image1, image2, image3, itemName, 
+  {image1, image2, image3, itemName, 
    itemDescription, priceCents, btn1, btn2,
-   btn3, star, count, reviews, itemCategory, productDesc }) {
+   btn3}) {
 
     
   return (
-    <div key={shopId} className="card-item-container">
+    <div className="card-item-container">
       <div className="topImg-container">
         <img
           src={`images/shopItems/${image1}`}
