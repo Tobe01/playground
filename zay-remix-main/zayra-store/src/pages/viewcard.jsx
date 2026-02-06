@@ -1,7 +1,4 @@
-export function ViewCard(
-  {shopId, image1, image2, image3, itemDescription, priceCents, 
-  star, count, reviews, itemCategory, productDesc})
-  {
+export function ViewCard() {
   return (
     <div className="viewItemContainer">
       {/* Items rendered in Shop.js */}
