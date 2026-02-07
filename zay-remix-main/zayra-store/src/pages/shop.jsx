@@ -2,7 +2,6 @@ import { Header } from "../components/header";
 import { Footer } from "../components/footer";
 import { ShopCard } from "./shopcards";
 import { shopData } from "../../data/shopdata";
-// import { ViewCard } from "./viewcard";
 
 export function Shop() {
   return (
@@ -46,7 +45,6 @@ export function Shop() {
                       btn1={shopItems.colorPicker.btn1}
                       btn2={shopItems.colorPicker.btn2}
                       btn3={shopItems.colorPicker.btn3}
-                      star={shopItems.ratings.star}
                       count={shopItems.ratings.count}
                       reviews={shopItems.ratings.reviews}
                       itemCategory={shopItems.itemCategory}

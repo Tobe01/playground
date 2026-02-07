@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { OrdersHeader } from "../components/orders-header";
 import './orders.css';
@@ -5,20 +6,59 @@ import '../media-queries/orders.css';
 import '../media-queries/orders-headers.css';
 
 export function Orders() {
+
+  const [ edit, setEdit ] = useState(false);
+  const [ address, setAddress ] = useState(false);
+  const [ contacts, setContacts ] = useState(true)
+
+  function showModal(){
+    if(edit === false){
+      setEdit(true);
+    } else {
+      setEdit(false)
+    }
+  }
+
+  function stayIn(){
+    if(edit === true){
+      setEdit(false);
+    } else {
+      setEdit(true);
+    }
+  }
+
+  function showAddress(){
+    if(address === false){
+      setContacts(false)
+      setAddress(true);
+    }
+  }
+
+  function showContacts(){
+    if(contacts === false){
+      setContacts(true)
+      setAddress(false);
+    }
+  }
+
+
   return (
     <>
       <title>Orders</title>
 
       {/* Edit Items Modal */}
-      <div className="editItems">
-        <div className="editItems-Container">
-          <h1>Are you sure you want to exit the checkout?</h1>
-          <button>STAY IN CHECKOUT</button>
-          <Link to="/checkout">
-            <button>EXIT CHECKOUT</button>
-          </Link>
+      { edit && 
+        <div className="editItems">
+          <div className="editItems-Container">
+            <h1>Are you sure you want to exit the checkout?</h1>
+            <button onClick={stayIn}>STAY IN CHECKOUT</button>
+            <Link to="/checkout">
+              <button>EXIT CHECKOUT</button>
+            </Link>
+          </div>
         </div>
-      </div>
+      }
+      
 
       {/* Checkout Modal */}
       <div className="paymentsModalContainer">
@@ -210,14 +250,14 @@ export function Orders() {
               <h1>Delivery Options</h1>
               <div className="selectDelivery">
                 <div className="selectDeliverySub">
-                  <button>
+                  <button onClick={showContacts}>
                     <img
                       src="images/icons/newdelivery.svg"
                       alt="deliveryvanIcon"
                     />
                     <p>Delivery Details</p>
                   </button>
-                  <button>
+                  <button onClick={showAddress}>
                     <img
                       src="images/icons/newlocation.svg"
                       alt="locationsIcon"
@@ -228,105 +268,112 @@ export function Orders() {
               </div>
 
               <div className="formField">
-                <p>Contact Details</p>
-                <div>
-                  <label>First Name</label>
-                  <div>
-                    <input
-                      type="text"
-                      name="name"
-                      placeholder="Enter First Name"
-                      required
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <label>Last Name</label>
-                  <div>
-                    <input
-                      type="text"
-                      name="surname"
-                      placeholder="Enter Last Name"
-                      required
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <label>Country</label>
-                  <select name="Country" id="Country" required>
-                    <option value="NG">Nigeria</option>
-                    <option value="GB">United Kingdom</option>
-                    <option value="US">United States</option>
-                  </select>
-                </div>
-
-                <div>
-                  <label>Phone Number</label>
-                  <div>
-                    <input
-                      type="text"
-                      name="phone number"
-                      placeholder="Enter Valid Phone Number"
-                      required
-                    />
-                  </div>
-                </div>
-
-                <div className="closeDrop">
-                  <p>Contact Address</p>
-                  <div className="closeForm">
+                { contacts && 
+                  <div className="contacts">
+                    <p>Contact Details</p>
                     <div>
-                      <label>Address Line 1</label>
+                      <label>First Name</label>
                       <div>
                         <input
                           type="text"
-                          name="Address"
-                          placeholder="Enter Contact  Address 1"
+                          name="name"
+                          placeholder="Enter First Name"
                           required
                         />
                       </div>
                     </div>
 
                     <div>
-                      <label>Address Line 2 (optional)</label>
+                      <label>Last Name</label>
                       <div>
                         <input
                           type="text"
-                          name="city"
-                          required
-                          placeholder="Enter Contact  Address 2"
-                        />
-                      </div>
-                    </div>
-
-                    <div>
-                      <label>City</label>
-                      <div>
-                        <input
-                          type="text"
-                          name="city"
-                          placeholder="Enter City"
+                          name="surname"
+                          placeholder="Enter Last Name"
                           required
                         />
                       </div>
                     </div>
 
                     <div>
-                      <label>Landmark (optional)</label>
+                      <label>Country</label>
+                      <select name="Country" id="Country" required>
+                        <option value="NG">Nigeria</option>
+                        <option value="GB">United Kingdom</option>
+                        <option value="US">United States</option>
+                      </select>
+                    </div>
+
+                    <div>
+                      <label>Phone Number</label>
                       <div>
                         <input
                           type="text"
-                          name="city"
+                          name="phone number"
+                          placeholder="Enter Valid Phone Number"
                           required
-                          placeholder="Enter Closest Landmark"
                         />
                       </div>
                     </div>
                   </div>
-                </div>
+                }
+
+                { address && 
+                  <div className="closeDrop">
+                    <p>Contact Address</p>
+                    <div className="closeForm">
+                      <div>
+                        <label>Address Line 1</label>
+                        <div>
+                          <input
+                            type="text"
+                            name="Address"
+                            placeholder="Enter Contact  Address 1"
+                            required
+                          />
+                        </div>
+                      </div>
+
+                      <div>
+                        <label>Address Line 2 (optional)</label>
+                        <div>
+                          <input
+                            type="text"
+                            name="city"
+                            required
+                            placeholder="Enter Contact  Address 2"
+                          />
+                        </div>
+                      </div>
+
+                      <div>
+                        <label>City</label>
+                        <div>
+                          <input
+                            type="text"
+                            name="city"
+                            placeholder="Enter City"
+                            required
+                          />
+                        </div>
+                      </div>
+
+                      <div>
+                        <label>Landmark (optional)</label>
+                        <div>
+                          <input
+                            type="text"
+                            name="city"
+                            required
+                            placeholder="Enter Closest Landmark"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                }
               </div>
+              
             </div>
           </div>
 
@@ -336,7 +383,7 @@ export function Orders() {
                 <h1>Selected Items</h1>
                 <div className="yourOrderSub">
                   <p>Shopping Cart (5)</p>
-                  <button>Edit Bag</button>
+                  <button onClick={showModal}>Edit Bag</button>
                 </div>
               </div>
 

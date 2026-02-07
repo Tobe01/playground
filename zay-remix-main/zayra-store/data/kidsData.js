@@ -1,6 +1,6 @@
 export const kidsData = [
    {
-  id: 5,
+  id: crypto.randomUUID(),
   images: {
     image1: '2149085823.webp',
     image2: '2149085833.webp',
@@ -22,7 +22,7 @@ export const kidsData = [
   itemCategory: "kid's clothing",
   productDesc: 'Warm knit texture made for comfort and fitted modern style.'
 },  {
-  id: 17,
+  id: crypto.randomUUID(),
   images: {
     image1: '13769.webp',
     image2: '13768.webp',
@@ -44,7 +44,7 @@ export const kidsData = [
   itemCategory: "kid's clothing",
   productDesc: 'Soft stretch knit shaping a fitted feminine silhouette.'
 }, {
-  id: 21,
+  id: crypto.randomUUID(),
   images: {
     image1: '2148070384.webp',
     image2: '2148070389.webp',
@@ -66,7 +66,7 @@ export const kidsData = [
   itemCategory: "kid's clothing",
   productDesc: 'Light flowy build ideal for warm days and casual outings.'
 }, {
-  id: 22,
+  id: crypto.randomUUID(),
   images: {
     image1: '42471.webp',
     image2: '55679.webp',
@@ -88,7 +88,7 @@ export const kidsData = [
   itemCategory: "kid's clothing",
   productDesc: 'Soft stretch blend for comfort during light activity.'
 }, {
-  id: 24,
+  id: crypto.randomUUID(),
   images: {
     image1: 'modupe-falade-BayzMQkraW4-unsplash.webp',
     image2: 'modupe-falade-GJ9ed5kqWqs-unsplash.webp',
@@ -110,7 +110,7 @@ export const kidsData = [
   itemCategory: "kid's clothing",
   productDesc: 'Light knit build created for regular layering comfort.'
 },  {
-  id: 25,
+  id: crypto.randomUUID(),
   images: {
     image1: '2149067157.webp',
     image2: '2149067155.webp',
@@ -132,7 +132,7 @@ export const kidsData = [
   itemCategory: "kid's clothing",
   productDesc: 'Soft ribbed fabric made for fitted warm-weather wear.'
 },  {
-  id: 26,
+  id: crypto.randomUUID(),
   images: {
     image1: '2149067092.webp',
     image2: '2149067094.webp',
@@ -154,7 +154,7 @@ export const kidsData = [
   itemCategory: "kid's clothing",
   productDesc: 'Cotton-blend built for daily comfort and breathable fit.'
 },  {
-  id: 27,
+  id: crypto.randomUUID(),
   images: {
     image1: '2149067066.webp',
     image2: '2149067064.webp',

@@ -17,7 +17,6 @@ button {
   right: 0;
   bottom: 0;
   z-index: 999;
-  visibility: hidden;
 }
 
 .editItems-Container {
@@ -144,7 +143,7 @@ button {
   justify-content: space-between;
 }
 
-.selectDelivery button:nth-child(2) {
+/* .selectDelivery button:nth-child(2) {
   display: flex;
   background-color: white;
   color: rgb(173, 173, 173);
@@ -156,9 +155,9 @@ button {
   cursor: pointer;
   white-space: nowrap;
   gap: 5px;
-}
+} */
 
-.selectDelivery button {
+/* .selectDelivery button {
   display: flex;
   background-color: white;
   color: black;
@@ -170,7 +169,7 @@ button {
   cursor: pointer;
   white-space: nowrap;
   gap: 5px;
-}
+} */
 
 .selectDelivery button p {
   font-weight: 600;

@@ -13,9 +13,13 @@ export function ShopCard({
   btn1,
   btn2,
   btn3,
-}) {
-  
-    const [showPreview, setShowPreview] = useState(false);
+  count,
+  reviews,
+  itemCategory,
+  productDesc,
+}) {  
+    const [ showPreview, setShowPreview ] = useState(false);
+    const [ showHover, setShowHover ] = useState(false);
     
     function displayItems(){
       if(showPreview === false){
@@ -25,10 +29,45 @@ export function ShopCard({
       }
     }
 
+    function closeItems(){
+      if(showPreview === true){
+        setShowPreview(false)
+      } else {
+        setShowPreview(true)
+      }
+    }
+
+    function hoverView(){
+      if(showHover === false){
+        setShowHover(true);
+      } else {
+        setShowHover(false)
+      }
+    }
+
+    function hoverOut(){
+      if(showHover === true){
+        setShowHover(false);
+      } else {
+        setShowHover(true)
+      }
+    }
+
   return (
     <>
-      {showPreview && <ViewCard />}
-      <div onClick={displayItems} className="card-item-container">
+      {showPreview && <ViewCard
+        image1={image1}
+        image2={image2}
+        image3={image3}
+        itemDescription={itemDescription}
+        priceCents={priceCents}
+        count={count}
+        reviews={reviews}
+        itemCategory={itemCategory}
+        productDesc={productDesc}
+        onClickAction={closeItems}
+      />}
+      <div onClick={displayItems} onMouseEnter={hoverView} onMouseLeave={hoverOut} className="card-item-container">
         <div className="topImg-container">
           <img
             src={`images/shopItems/${image1}`}
@@ -50,14 +89,17 @@ export function ShopCard({
             loading="lazy"
             className="images"
           />
-
+          
+          { showHover && 
+          
           <div className="HoverDiv">
             View Item{" "}
             <img
               src="images/icons/arrow_outward_18dp_FFFFFF_FILL0_wght400_GRAD0_opsz20.svg"
               alt="arrowOutward"
             />
-          </div>
+          </div>}
+          
         </div>
 
         <div className="bottomItem-container">

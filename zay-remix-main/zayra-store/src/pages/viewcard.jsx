@@ -1,9 +1,20 @@
-export function ViewCard() {
+export function ViewCard({
+  image1,
+  image2,
+  image3,
+  itemDescription,
+  priceCents,
+  count,
+  reviews,
+  itemCategory,
+  productDesc,
+  onClickAction,
+}) {
   return (
     <div className="viewItemContainer">
       {/* Items rendered in Shop.js */}
       <div className="viewSub">
-        <div className="backToShop">
+        <div onClick={onClickAction} className="backToShop">
           <img
             src="images/icons/close_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg"
             alt="arrowBack"
@@ -13,19 +24,19 @@ export function ViewCard() {
         <div className="viewCards">
           <div className="imgContainer">
             <img
-              src="images/shopItems/2149684322.webp"
+              src={`images/shopItems/${image1}`}
               alt="item-images"
               loading="lazy"
             />
 
             <img
-              src="images/shopItems/2149684359.webp"
+              src={`images/shopItems/${image2}`}
               alt="item-images"
               loading="lazy"
             />
 
             <img
-              src="images/shopItems/2149684357.webp"
+              src={`images/shopItems/${image3}`}
               alt="item-images"
               loading="lazy"
             />
@@ -51,7 +62,7 @@ export function ViewCard() {
               <div className="itemDetail">
                 <div>
                   <h1>
-                    Slim Stacked Flare Embroidered Strip Tricot Track Pants
+                    {itemDescription}
                   </h1>
 
                   {/* From Uiverse.io by SalladShooter */}
@@ -85,7 +96,7 @@ export function ViewCard() {
                     alt="rating"
                   />
                   <p>
-                    5.1<span>(259 reviews)</span>
+                    {(count / 10)}<span>({reviews} reviews)</span>
                   </p>
                 </div>
               </div>
@@ -94,7 +105,7 @@ export function ViewCard() {
                 <div className="categoryContainer">
                   <div className="itemCategory">
                     <p>Category:</p>
-                    <h4>womens's clothing</h4>
+                    <h4>{itemCategory}</h4>
                   </div>
 
                   <div className="itemOrder">
@@ -108,7 +119,7 @@ export function ViewCard() {
 
                 <div className="itemPrice">
                   <p>Price:</p>
-                  <h1>$22.30</h1>
+                  <h1>{`$${(priceCents / 100).toFixed(2)}`}</h1>
                 </div>
               </div>
             </div>
@@ -116,9 +127,7 @@ export function ViewCard() {
             <div className="itemDescription">
               <h1>Description:</h1>
               <p>
-                Light weight & soft fabric for breathable and comfortable
-                wearing. And solid stitched shirts with round neck made for
-                durability and a great fit for casual fash.
+                {productDesc}
               </p>
             </div>
 
