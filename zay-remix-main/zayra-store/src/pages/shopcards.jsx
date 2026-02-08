@@ -55,6 +55,7 @@ export function ShopCard({
 
   return (
     <>
+    {/* if showPreview is true, ViewCard component is visible */}
       {showPreview && <ViewCard
         image1={image1}
         image2={image2}
