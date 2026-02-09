@@ -140,7 +140,8 @@ export function ViewCard({
                     alt="minus"
                   />
                 </div>
-                <input />
+                {/* <input /> */}
+                <span>0</span>
                 <div>
                   <img
                     src="images/icons/add_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg"
