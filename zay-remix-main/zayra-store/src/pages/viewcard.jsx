@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 export function ViewCard({
   image1,
   image2,
@@ -10,6 +12,25 @@ export function ViewCard({
   productDesc,
   onClickAction,
 }) {
+  
+  const [ quantity, setQuantity ] = useState(0);
+
+  function increaseQuantity(){
+    setQuantity(quantity + 1);
+
+    if(quantity > 9){
+      setQuantity(10);
+    }
+  }
+
+   function decreaseQuantity(){
+    setQuantity(quantity - 1);
+
+    if(quantity < 1){
+      setQuantity(0);
+    }
+  }
+
   return (
     <div className="viewItemContainer">
       {/* Items rendered in Shop.js */}
@@ -134,15 +155,15 @@ export function ViewCard({
             <div className="addQuantity">
               <p>Quantity:</p>
               <div className="addQuantitySub">
-                <div>
+                <div onClick={decreaseQuantity}>
                   <img
                     src="images/icons/check_indeterminate_small_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg"
                     alt="minus"
                   />
                 </div>
                 {/* <input /> */}
-                <span>0</span>
-                <div>
+                <span>{quantity}</span>
+                <div onClick={increaseQuantity}>
                   <img
                     src="images/icons/add_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg"
                     alt="add"
