@@ -17,6 +17,9 @@ export function ShopCard({
   reviews,
   itemCategory,
   productDesc,
+  quantity,
+  setQuantity,
+  addItem={addItem}
 }) {  
     const [ showPreview, setShowPreview ] = useState(false);
     const [ showHover, setShowHover ] = useState(false);
@@ -67,6 +70,9 @@ export function ShopCard({
         itemCategory={itemCategory}
         productDesc={productDesc}
         onClickAction={closeItems}
+        quantity={quantity}
+        setQuantity={setQuantity}
+        addItem={addItem}
       />}
       <div onClick={displayItems} onMouseEnter={hoverView} onMouseLeave={hoverOut} className="card-item-container">
         <div className="topImg-container">

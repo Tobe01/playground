@@ -1,5 +1,3 @@
-import { useState } from 'react';
-
 export function ViewCard({
   image1,
   image2,
@@ -11,10 +9,11 @@ export function ViewCard({
   itemCategory,
   productDesc,
   onClickAction,
+  quantity,
+  setQuantity,
+  addItem,
 }) {
   
-  const [ quantity, setQuantity ] = useState(0);
-
   function increaseQuantity(){
     setQuantity(quantity + 1);
 
@@ -172,7 +171,7 @@ export function ViewCard({
               </div>
             </div>
 
-            <button className="addItem">Add to Cart</button>
+            <button onClick={addItem} className="addItem">Add to Cart</button>
           </div>
         </div>
       </div>

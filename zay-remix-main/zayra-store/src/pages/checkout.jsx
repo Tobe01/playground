@@ -9,7 +9,7 @@ export function Checkout() {
   return (
     <>
       <title>checkout</title>
-      <Header />
+      <Header/>
       {/* <!-- Empty Cart Display --> */}
 
       <div className="emptyCart">
@@ -54,7 +54,7 @@ export function Checkout() {
                               alt="minus"
                             />
                           </div>
-                          <input />
+                          <span>0</span>
                           <div>
                             <img
                               src="images/icons/add_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg"

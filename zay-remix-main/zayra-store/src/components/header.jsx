@@ -7,7 +7,7 @@ import "./sub-header.css";
 import "./subhover.css";
 import "../media-queries/header.css";
 
-export function Header() {
+export function Header({updateQuantity}) {
 
   const [isChanged, setIsChanged] = useState(false);
   const [inchange, setInchange] = useState("REFRESH, REVIVE, RECIRCULATE: RE-ZAY");
@@ -73,7 +73,7 @@ export function Header() {
                     src="images/icons/local_mall_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg"
                     alt="localMall"
                   />
-                  <div className="quantity">0</div>
+                  <div className="quantity">{updateQuantity}</div>
                 </span>
               </Link>
             </div>
@@ -357,7 +357,7 @@ export function Header() {
                       src="images/icons/local_mall_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg"
                       alt="localMall"
                     />
-                    <div className="quantity">0</div>
+                    <div className="quantity">{updateQuantity}</div>
                   </span>
                 </Link>
               </div>

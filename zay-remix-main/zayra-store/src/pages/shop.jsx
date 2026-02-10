@@ -1,13 +1,34 @@
+import { useState, useEffect } from 'react';
 import { Header } from "../components/header";
 import { Footer } from "../components/footer";
 import { ShopCard } from "./shopcards";
 import { shopData } from "../../data/shopdata";
 
 export function Shop() {
+  
+  const [ quantity, setQuantity ] = useState(0);
+
+  const [ updateQuantity, setUpdateQuantity ] = useState(()=>{
+    const stored = localStorage.getItem('updateQuantity');
+    return stored ? JSON.parse(stored) : 0
+  });
+
+  function addItem(){
+    setUpdateQuantity(quantity);
+    setQuantity(0)
+  };
+ 
+  useEffect(()=>{
+    localStorage.setItem('updateQuantity', JSON.stringify(updateQuantity));
+  }, [updateQuantity]);
+
+
   return (
     <>
       <title>Shop</title>
-      <Header />
+      <Header 
+        updateQuantity={updateQuantity}
+      />
 
       <main>
         <div className="shop-main-container">
@@ -49,6 +70,9 @@ export function Shop() {
                       reviews={shopItems.ratings.reviews}
                       itemCategory={shopItems.itemCategory}
                       productDesc={shopItems.productDesc}
+                      quantity={quantity}
+                      setQuantity={setQuantity}
+                      addItem={addItem}
                     />
                   );
                 })}
