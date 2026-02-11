@@ -48,13 +48,15 @@ export function Checkout() {
       {/* <!-- Empty Cart Display --> */}
 
       {checkoutItems.length === 0 && (
-        <div className="emptyCart">
-          <img src="images/icons/local_mall_Dark.svg" alt="localMallIcon" />
-          <p>Your Cart is Empty</p>
-          <Link to="/shop" className="browseButton">
-            BROWSE THE SHOP
-          </Link>
-        </div>
+        <section className="checkout">
+          <div className="emptyCart">
+            <img src="images/icons/local_mall_Dark.svg" alt="localMallIcon" />
+            <p>Your Cart is Empty</p>
+            <Link to="/shop" className="browseButton">
+              BROWSE THE SHOP
+            </Link>
+          </div>
+        </section>
       )}
 
       {checkoutItems.length > 0 && (
