@@ -1,26 +1,21 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Header } from "../components/header";
 import { Footer } from "../components/footer";
 import { ShopCard } from "./shopcards";
 import { shopData } from "../../data/shopdata";
+import { addToCart, getCartQuantity } from "../../data/cart";
 
 export function Shop() {
   
-  const [ quantity, setQuantity ] = useState(0);
+  const [ quantity, setQuantity ] = useState(1);
 
-  const [ updateQuantity, setUpdateQuantity ] = useState(()=>{
-    const stored = localStorage.getItem('updateQuantity');
-    return stored ? JSON.parse(stored) : 0
-  });
+  const [ updateQuantity, setUpdateQuantity ] = useState(() => getCartQuantity());
 
-  function addItem(){
-    setUpdateQuantity(quantity);
-    setQuantity(0)
+  function addItem(product){
+    const nextCart = addToCart(product);
+    setUpdateQuantity(getCartQuantity(nextCart));
+    setQuantity(1);
   };
- 
-  useEffect(()=>{
-    localStorage.setItem('updateQuantity', JSON.stringify(updateQuantity));
-  }, [updateQuantity]);
 
 
   return (

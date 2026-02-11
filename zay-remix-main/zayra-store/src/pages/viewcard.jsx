@@ -13,21 +13,21 @@ export function ViewCard({
   setQuantity,
   addItem,
 }) {
-  
-  function increaseQuantity(){
-    setQuantity(quantity + 1);
-
-    if(quantity > 9){
-      setQuantity(10);
-    }
+  function handleAddToCart() {
+    addItem({
+      Image: image1,
+      itemDescription,
+      priceCents,
+      quantity: quantity > 0 ? quantity : 1,
+    });
   }
 
-   function decreaseQuantity(){
-    setQuantity(quantity - 1);
+  function increaseQuantity() {
+    setQuantity((currentQuantity) => Math.min(currentQuantity + 1, 10));
+  }
 
-    if(quantity < 1){
-      setQuantity(0);
-    }
+  function decreaseQuantity() {
+    setQuantity((currentQuantity) => Math.max(currentQuantity - 1, 0));
   }
 
   return (
@@ -81,9 +81,7 @@ export function ViewCard({
             <div className="itemCost">
               <div className="itemDetail">
                 <div>
-                  <h1>
-                    {itemDescription}
-                  </h1>
+                  <h1>{itemDescription}</h1>
 
                   {/* From Uiverse.io by SalladShooter */}
                   <div className="like-wrapper">
@@ -116,7 +114,8 @@ export function ViewCard({
                     alt="rating"
                   />
                   <p>
-                    {(count / 10)}<span>({reviews} reviews)</span>
+                    {count / 10}
+                    <span>({reviews} reviews)</span>
                   </p>
                 </div>
               </div>
@@ -146,9 +145,7 @@ export function ViewCard({
 
             <div className="itemDescription">
               <h1>Description:</h1>
-              <p>
-                {productDesc}
-              </p>
+              <p>{productDesc}</p>
             </div>
 
             <div className="addQuantity">
@@ -171,7 +168,9 @@ export function ViewCard({
               </div>
             </div>
 
-            <button onClick={addItem} className="addItem">Add to Cart</button>
+            <button onClick={handleAddToCart} className="addItem">
+              Add to Cart
+            </button>
           </div>
         </div>
       </div>

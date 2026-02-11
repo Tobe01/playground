@@ -13,8 +13,6 @@
   left: 0;
   right: 0;
   gap: 15px;
-  visibility: hidden;
-  display: none;
 }
 
 .emptyCart img {
@@ -88,11 +86,12 @@
 .checkoutContents {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   flex: 1;
   background-color: white;
   padding: 10px 20px 10px 10px;
   border-radius: 5px;
-  max-width: 600px;
+  max-width: 550px;
   border-radius: 5px;
   margin-bottom: 10px;
 }

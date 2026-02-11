@@ -19,7 +19,7 @@ export function ShopCard({
   productDesc,
   quantity,
   setQuantity,
-  addItem={addItem}
+  addItem,
 }) {  
     const [ showPreview, setShowPreview ] = useState(false);
     const [ showHover, setShowHover ] = useState(false);
