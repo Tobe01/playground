@@ -8,6 +8,8 @@ import "./shop.css";
 import "../media-queries/checkout.css";
 
 export function Checkout() {
+  const [ isAvailable, setIsAvailable ] = useState(false);
+  const [ unAvailable, setUnAvailable ] = useState(false);
   const [checkoutItems, setCheckoutItems] = useState(() => getCartItems());
   const cartCount = getCartQuantity(checkoutItems);
   const subtotalCents = checkoutItems.reduce(
@@ -40,6 +42,18 @@ export function Checkout() {
       saveCartItems(nextItems);
       return nextItems;
     });
+  }
+
+  function paymentNotAvailable(){
+    if(isAvailable === false){
+      setIsAvailable(alert("Payment Method Not available yet!"));
+    }
+  }
+
+  function paymentUnavailable(){
+    if(unAvailable === false){
+      setUnAvailable(alert("Payment Method Not available yet!"))
+    }
   }
 
   return (
@@ -180,7 +194,7 @@ export function Checkout() {
                       <Link to="/orders">
                         <button>CHECKOUT</button>
                       </Link>
-                      <button>
+                      <button onClick={paymentNotAvailable}>
                         <img
                           src="images/icons/apple.webp"
                           alt="apple-logo"
@@ -188,7 +202,7 @@ export function Checkout() {
                         />{" "}
                         Pay
                       </button>
-                      <button>
+                      <button onClick={paymentUnavailable}>
                         <img
                           src="images/payments/PayPal_Logo_Horizontal_Full_Color_RGB-002-1.webp"
                           alt="paypal-icon"
