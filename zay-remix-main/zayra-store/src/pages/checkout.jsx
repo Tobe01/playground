@@ -11,8 +11,9 @@ export function Checkout() {
   const [checkoutItems, setCheckoutItems] = useState(() => getCartItems());
   const cartCount = getCartQuantity(checkoutItems);
   const subtotalCents = checkoutItems.reduce(
-    (total, item) => total + Number(item.priceCents || 0) * Number(item.quantity || 0),
-    0
+    (total, item) =>
+      total + Number(item.priceCents || 0) * Number(item.quantity || 0),
+    0,
   );
   const discountCents = 660;
   const orderTotalCents = Math.max(subtotalCents - discountCents, 0);
@@ -48,7 +49,7 @@ export function Checkout() {
       {/* <!-- Empty Cart Display --> */}
 
       {checkoutItems.length === 0 && (
-        <section className="checkout">
+        <section className="emptyContainer">
           <div className="emptyCart">
             <img src="images/icons/local_mall_Dark.svg" alt="localMallIcon" />
             <p>Your Cart is Empty</p>
@@ -64,59 +65,83 @@ export function Checkout() {
           <div className="deliveredBy">
             <div className="mainCheckout-container">
               {/* Cart Container */}
-              <div className="Array-container">
-                <div className="checkoutParent">
-                  <p>Shopping Cart ({cartCount})</p>
+              <div className="controlQuanContainer">
+                <div className="controlCart">
+                  <div className="checkoutParent">
+                    <p>Shopping Cart ({cartCount})</p>
+                  </div>
+
+                  <Link to="/shop">
+                    <div className="backToShop">
+                      <span>
+                        <img src="../../public/images/icons/arrow_left_alt_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg" />
+                      </span>
+                      <p>Back to Shop</p>
+                    </div>
+                  </Link>
                 </div>
 
-                {/* Container for array of added items */}
-                <div className="checkoutLeft">
-                  {checkoutItems.map((cartItem) => {
-                    return (
-                      <div className="checkoutContents" key={cartItem.Image}>
-                        <div className="checkoutTop">
-                          <div className="checkoutImage">
-                            <img
-                              src={`images/shopItems/${cartItem.Image}`}
-                              alt="checkoutImage"
-                            />
-                          </div>
-                          <div className="checkoutItems">
-                            <h1>{cartItem.itemDescription}</h1>
-                            <p>{`$${(cartItem.priceCents / 100).toFixed(2)}`}</p>
+                <div className="Array-container">
+                  {/* Container for array of added items */}
+                  <div className="checkoutLeft">
+                    {checkoutItems.map((cartItem) => {
+                      return (
+                        <div className="checkoutContents" key={cartItem.Image}>
+                          <div className="checkoutTop">
+                            <div className="checkoutImage">
+                              <img
+                                src={`images/shopItems/${cartItem.Image}`}
+                                alt="checkoutImage"
+                              />
+                            </div>
+                            <div className="checkoutItems">
+                              <h1>{cartItem.itemDescription}</h1>
+                              <p>{`$${(cartItem.priceCents / 100).toFixed(2)}`}</p>
 
-                            <div className="addQuantity">
-                              <p>Quantity:</p>
-                              <div className="addQuantitySub">
-                                <div onClick={() => updateItemQuantity(cartItem.Image, -1)}>
-                                  <img
-                                    src="images/icons/check_indeterminate_small_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg"
-                                    alt="minus"
-                                  />
-                                </div>
-                                <span>{cartItem.quantity}</span>
-                                <div onClick={() => updateItemQuantity(cartItem.Image, 1)}>
-                                  <img
-                                    src="images/icons/add_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg"
-                                    alt="add"
-                                  />
+                              <div className="addQuantity">
+                                <p>Quantity:</p>
+                                <div className="addQuantitySub">
+                                  <div
+                                    onClick={() =>
+                                      updateItemQuantity(cartItem.Image, -1)
+                                    }
+                                  >
+                                    <img
+                                      src="images/icons/check_indeterminate_small_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg"
+                                      alt="minus"
+                                    />
+                                  </div>
+                                  <span>{cartItem.quantity}</span>
+                                  <div
+                                    onClick={() =>
+                                      updateItemQuantity(cartItem.Image, 1)
+                                    }
+                                  >
+                                    <img
+                                      src="images/icons/add_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg"
+                                      alt="add"
+                                    />
+                                  </div>
                                 </div>
                               </div>
                             </div>
                           </div>
-                        </div>
 
-                        <div className="deleteContainer">
-                          <button type="button" onClick={() => handleDeleteItem(cartItem.Image)}>
-                            <img
-                              src="images/icons/delete_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.svg"
-                              alt="deleteIcon"
-                            />
-                          </button>
+                          <div className="deleteContainer">
+                            <button
+                              type="button"
+                              onClick={() => handleDeleteItem(cartItem.Image)}
+                            >
+                              <img
+                                src="images/icons/delete_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.svg"
+                                alt="deleteIcon"
+                              />
+                            </button>
+                          </div>
                         </div>
-                      </div>
-                    );
-                  })}
+                      );
+                    })}
+                  </div>
                 </div>
               </div>
 
@@ -181,7 +206,10 @@ export function Checkout() {
                         src="images/payments/images (1).webp"
                         alt="paymentsLogo"
                       />
-                      <img src="images/payments/Mclick.webp" alt="paymentsLogo" />
+                      <img
+                        src="images/payments/Mclick.webp"
+                        alt="paymentsLogo"
+                      />
                       <img
                         src="images/payments/apple-pay.webp"
                         alt="paymentsLogo"
@@ -190,8 +218,14 @@ export function Checkout() {
                         src="images/payments/images (1).webp"
                         alt="paymentsLogo"
                       />
-                      <img src="images/payments/images.webp" alt="paymentsLogo" />
-                      <img src="images/payments/Mclick.webp" alt="paymentsLogo" />
+                      <img
+                        src="images/payments/images.webp"
+                        alt="paymentsLogo"
+                      />
+                      <img
+                        src="images/payments/Mclick.webp"
+                        alt="paymentsLogo"
+                      />
                       <img
                         src="images/payments/images (1).webp"
                         alt="paymentsLogo"

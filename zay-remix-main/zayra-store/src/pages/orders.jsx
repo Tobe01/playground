@@ -1,53 +1,62 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { OrdersHeader } from "../components/orders-header";
-import './orders.css';
-import '../media-queries/orders.css';
-import '../media-queries/orders-headers.css';
+import { getCartItems, getCartQuantity } from "../../data/cart";
+import "./orders.css";
+import "../media-queries/orders.css";
+import "../media-queries/orders-headers.css";
 
 export function Orders() {
+  const [ checkoutItems ] = useState(() => getCartItems());
+  const cartCount = getCartQuantity(checkoutItems);
+  const subtotalCents = checkoutItems.reduce(
+    (total, item) =>
+      total + Number(item.priceCents || 0) * Number(item.quantity || 0),
+    0,
+  );
+  const discountCents = 660;
+  const orderTotalCents = Math.max(subtotalCents - discountCents, 0);
 
-  const [ edit, setEdit ] = useState(false);
-  const [ address, setAddress ] = useState(false);
-  const [ contacts, setContacts ] = useState(true)
+  const [edit, setEdit] = useState(false);
+  const [address, setAddress] = useState(false);
+  const [contacts, setContacts] = useState(true);
 
-  function showModal(){
-    if(edit === false){
+  function showModal() {
+    if (edit === false) {
       setEdit(true);
     } else {
-      setEdit(false)
+      setEdit(false);
     }
   }
 
-  function stayIn(){
-    if(edit === true){
+  function stayIn() {
+    if (edit === true) {
       setEdit(false);
     } else {
       setEdit(true);
     }
   }
 
-  function showAddress(){
-    if(address === false){
-      setContacts(false)
+  function showAddress() {
+    if (address === false) {
+      setContacts(false);
       setAddress(true);
     }
   }
 
-  function showContacts(){
-    if(contacts === false){
-      setContacts(true)
+  function showContacts() {
+    if (contacts === false) {
+      setContacts(true);
       setAddress(false);
     }
   }
-
 
   return (
     <>
       <title>Orders</title>
 
       {/* Edit Items Modal */}
-      { edit && 
+      {edit && (
         <div className="editItems">
           <div className="editItems-Container">
             <h1>Are you sure you want to exit the checkout?</h1>
@@ -57,8 +66,7 @@ export function Orders() {
             </Link>
           </div>
         </div>
-      }
-      
+      )}
 
       {/* Checkout Modal */}
       <div className="paymentsModalContainer">
@@ -250,14 +258,14 @@ export function Orders() {
               <h1>Delivery Options</h1>
               <div className="selectDelivery">
                 <div className="selectDeliverySub">
-                  <button onClick={showContacts}>
+                  <button onClick={showContacts} style={{backgroundColor: contacts ? 'grey' : 'white', color: contacts ? 'white' : 'grey'}} >
                     <img
                       src="images/icons/newdelivery.svg"
                       alt="deliveryvanIcon"
                     />
                     <p>Delivery Details</p>
                   </button>
-                  <button onClick={showAddress}>
+                  <button onClick={showAddress} style={{backgroundColor: address ? 'grey' : 'white', color: address ? 'white' : 'grey'}} >
                     <img
                       src="images/icons/newlocation.svg"
                       alt="locationsIcon"
@@ -268,7 +276,7 @@ export function Orders() {
               </div>
 
               <div className="formField">
-                { contacts && 
+                {contacts && (
                   <div className="contacts">
                     <p>Contact Details</p>
                     <div>
@@ -316,9 +324,9 @@ export function Orders() {
                       </div>
                     </div>
                   </div>
-                }
+                )}
 
-                { address && 
+                {address && (
                   <div className="closeDrop">
                     <p>Contact Address</p>
                     <div className="closeForm">
@@ -371,9 +379,8 @@ export function Orders() {
                       </div>
                     </div>
                   </div>
-                }
+                )}
               </div>
-              
             </div>
           </div>
 
@@ -382,23 +389,29 @@ export function Orders() {
               <div className="suby">
                 <h1>Selected Items</h1>
                 <div className="yourOrderSub">
-                  <p>Shopping Cart (5)</p>
+                  <p>Shopping Cart ({cartCount})</p>
                   <button onClick={showModal}>Edit Bag</button>
                 </div>
               </div>
 
-              <div className="checkoutTop">
-                <div className="checkoutImagee">
-                  <img
-                    src="images/women/2927.webp"
-                    alt="checkoutImage"
-                    loading="lazy"
-                  />
-                </div>
-                <div className="checkoutItems">
-                  <b>Mens Casual Premium Slim Fit T-Shirts</b>
-                  <p>$22.30</p>
-                </div>
+              <div className="orderedItems">
+                {checkoutItems.map((cartItem) => {
+                  return (
+                    <div className="checkoutTop">
+                      <div className="checkoutImagee">
+                        <img
+                          src={`images/shopItems/${cartItem.Image}`}
+                          alt="checkoutImage"
+                          loading="lazy"
+                        />
+                      </div>
+                      <div className="checkoutItems">
+                        <b>{cartItem.itemDescription}</b>
+                        <p>{`$${(cartItem.priceCents / 100).toFixed(2)}`}</p>
+                      </div>
+                    </div>
+                  );
+                })}
               </div>
 
               <div className="OrderSummaary">
@@ -407,24 +420,24 @@ export function Orders() {
                   <div className="orderfirst">
                     <div className="subtotaal">
                       <p>Subtotal</p>
-                      <p>£58.00</p>
+                      <p>{`$${(subtotalCents / 100).toFixed(2)}`}</p>
                     </div>
                     <div className="discoount">
                       <p>Discount</p>
-                      <p>-£6.60</p>
+                      <p>{`-$${(discountCents / 100).toFixed(2)}`}</p>
                     </div>
                   </div>
 
                   <div className="orderSecoond">
                     <div className="orderTootal">
                       <p>Order total</p>
-                      <p>£51.40</p>
+                      <p>{`$${(orderTotalCents / 100).toFixed(2)}`}</p>
                     </div>
 
                     <div className="orderDiscount">
                       <h4>Discounts included:</h4>
                       <p>
-                        70% SALE <span>-£6.60</span>
+                        70% SALE <span>{`-$${(discountCents / 100).toFixed(2)}`}</span>
                       </p>
                     </div>
                   </div>

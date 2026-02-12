@@ -1,5 +1,5 @@
 export const womensData = [{
-  id: 16,
+  id: crypto.randomUUID(),
   images: {
     image1: 'prateek-saxena-5X31WriYvqY-unsplash.webp',
     image2: 'prateek-saxena-qayeCyZZGqU-unsplash.webp',
@@ -21,7 +21,7 @@ export const womensData = [{
   itemCategory: "women's clothing",
   productDesc: 'Soft fleece blend for daily layering and comfort.'
 }, {
-  id: 28,
+  id: crypto.randomUUID(),
   images: {
     image1: 'oscar-ramirez-SAfrvrXLuY8-unsplash.webp',
     image2: 'oscar-ramirez-ak8llrB9nvg-unsplash.webp',
@@ -43,7 +43,7 @@ export const womensData = [{
   itemCategory: "women's clothing",
   productDesc: 'Breathable mesh fabric ideal for training and movement.'
 }, {
-  id: 4,
+  id: crypto.randomUUID(),
   images: {
     image1: '31633.webp',
     image2: '31649.webp',
@@ -65,7 +65,7 @@ export const womensData = [{
   itemCategory: "women's clothing",
   productDesc: 'Light cotton fabric designed for easy wear and regular movement.'
 },  {
-  id: 6,
+  id: crypto.randomUUID(),
   images: {
     image1: 'daniyal-ahmed-A2ilNniJdug-unsplash.webp',
     image2: 'daniyal-ahmed-MMvjZhK_mMQ-unsplash.webp',
@@ -87,7 +87,7 @@ export const womensData = [{
   itemCategory: "women's clothing",
   productDesc: 'Lightweight shell for easy layering and all-day coverage.'
 },  {
-  id: 11,
+  id: crypto.randomUUID(),
   images: {
     image1: 'precious-madubuike-YfZ7vA6-Uik-unsplash.webp',
     image2: 'dylann-hendricks-JZDIy69uDRc-unsplash.webp',
@@ -109,7 +109,7 @@ export const womensData = [{
   itemCategory: "women's clothing",
   productDesc: 'Warm thick knit designed for relaxed fit and cool weather use.'
 },  {
-  id: 12,
+  id: crypto.randomUUID(),
   images: {
     image1: 'md-ishak-raman-8GjW6tAHgRM-unsplash.webp',
     image2: 'md-ishak-raman-ekROGLQgdSE-unsplash.webp',
@@ -131,7 +131,7 @@ export const womensData = [{
   itemCategory: "women's clothing",
   productDesc: 'Soft lining built for light warmth and everyday wear.'
 }, {
-  id: 1,
+  id: crypto.randomUUID(),
   images: {
     image1: '2149684322.webp',
     image2: '2149684359.webp',
@@ -153,7 +153,7 @@ export const womensData = [{
   itemCategory: "womens's clothing",
   productDesc: 'Light weight & soft fabric for breathable and comfortable wearing. And Solid stitched shirts with round neck made for durability and a great fit for casual fash.'
 }, {
-  id: 3,
+  id: crypto.randomUUID(),
   images: {
     image1: '59174.webp',
     image2: '57792.webp',

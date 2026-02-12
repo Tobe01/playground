@@ -16,13 +16,3 @@
 .interval-sub-container a:hover {
   color: rgb(144, 144, 247);
 }
-
-.firstInterval {
-  position: relative;
-  visibility: hidden;
-  display: hidden;
-}
-
-.secondInterval {
-  position: absolute;
-}

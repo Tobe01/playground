@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { activateHamburger, closeWindow } from './drop-menu/dropdown';
+import { activateHamburger, closeWindow } from "./drop-menu/dropdown";
 import { useState, useEffect } from "react";
 import "./header.css";
 import "./interval.css";
@@ -7,13 +7,16 @@ import "./sub-header.css";
 import "./subhover.css";
 import "../media-queries/header.css";
 
-export function Header({updateQuantity}) {
-
+export function Header({ updateQuantity }) {
+  const [search, setSearch] = useState(false);
   const [isChanged, setIsChanged] = useState(false);
-  const [inchange, setInchange] = useState("REFRESH, REVIVE, RECIRCULATE: RE-ZAY");
+  const [isVisible, setIsvisible] = useState(false);
+  const [inchange, setInchange] = useState(
+    "REFRESH, REVIVE, RECIRCULATE: RE-ZAY",
+  );
 
-  useEffect(()=>{
-    var interval = setInterval(()=>{
+  useEffect(() => {
+    var interval = setInterval(() => {
       if (isChanged === false) {
         setInchange("FAST SHIPPING FAST DELIVERY FREE RETURN");
         setIsChanged(true);
@@ -21,14 +24,36 @@ export function Header({updateQuantity}) {
         setInchange("REFRESH, REVIVE, RECIRCULATE: RE-ZAY");
         setIsChanged(false);
       }
-    }, 2000);
+    }, 3000);
 
     return function () {
       clearInterval(interval);
     };
   }, [isChanged]);
 
+  function showMainSearch() {
+    if (search === false) {
+      setSearch(true);
+    }
+  }
 
+  function closeMainSearch() {
+    if (search === true) {
+      setSearch(false);
+    }
+  }
+
+  function showSubHover() {
+    if (isVisible === false) {
+      setIsvisible(true);
+    }
+  }
+
+  function exitSubHover() {
+    if (isVisible === true) {
+      setIsvisible(false);
+    }
+  }
 
   return (
     <>
@@ -331,7 +356,10 @@ export function Header({updateQuantity}) {
                     alt="search icon"
                   />
                 </span>
-                <input placeholder="Search for products, brands, or ..." />
+                <input
+                  onClick={showMainSearch}
+                  placeholder="Search for products, brands, or ..."
+                />
               </div>
               <div className="right-sub-icon">
                 <Link to="/login">
@@ -367,7 +395,11 @@ export function Header({updateQuantity}) {
 
         <div className="bottom-nav">
           <div className="bottom-sub">
-            <div className="NewHover">
+            <div
+              onMouseEnter={showSubHover}
+              onMouseLeave={exitSubHover}
+              className="NewHover"
+            >
               <p>NEW IN</p>
             </div>
             <div className="NewHover">
@@ -397,28 +429,30 @@ export function Header({updateQuantity}) {
           </div>
         </div>
 
-        {/* Search icon tht appears on clicked central search */}
-        <div className="main-search">
-          <div className="main-search-container">
-            <button className="close-button">
-              <img
-                src="images/icons/close_small_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg"
-                alt="closeMall"
+        {/* Search icon that appears on clicked central search */}
+        {search && (
+          <div className="main-search">
+            <div className="main-search-container">
+              <button onClick={closeMainSearch} className="close-button">
+                <img
+                  src="images/icons/close_small_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg"
+                  alt="closeMall"
+                />
+              </button>
+              <input
+                className="main-search-bar"
+                type="search"
+                placeholder="Search for products, brands, or categories"
               />
-            </button>
-            <input
-              className="main-search-bar"
-              type="search"
-              placeholder="Search for products, brands, or categories"
-            />
-            <button className="search-button">
-              <img
-                src="images/icons/search_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg"
-                alt="searchIcon"
-              />
-            </button>
+              <button className="search-button">
+                <img
+                  src="images/icons/search_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg"
+                  alt="searchIcon"
+                />
+              </button>
+            </div>
           </div>
-        </div>
+        )}
 
         <div className="intervalContainer">
           <div className="interval-sub-container">
@@ -427,114 +461,116 @@ export function Header({updateQuantity}) {
             </div>
           </div>
 
-          <div className="subHover">
-            <div className="brandsA-Z">
-              <b>
-                <h4>Brands A-Z</h4>
-              </b>
-              <p>Clothing brands</p>
-              <p>Shoe brands</p>
-              <p>Accessories brands</p>
-              <p>Sports brands</p>
-              <p>Designer brands</p>
+          {isVisible && (
+            <div className="subHover">
+              <div className="brandsA-Z">
+                <b>
+                  <h4>Brands A-Z</h4>
+                </b>
+                <p>Clothing brands</p>
+                <p>Shoe brands</p>
+                <p>Accessories brands</p>
+                <p>Sports brands</p>
+                <p>Designer brands</p>
+              </div>
+              <div className="ManageBrands">
+                <b>
+                  <h4>Manage your brands</h4>
+                </b>
+                <p>Dulale Diva</p>
+                <p>Light Studio</p>
+                <p>Ellen Joe</p>
+                <p>Dallas</p>
+                <p>Mag</p>
+                <p>Loop</p>
+                <p>Syntia Delaney</p>
+                <p>Emillia</p>
+              </div>
+              <div className="ManageBrands">
+                <b>
+                  <h4>Popular brands</h4>
+                </b>
+                <p>Julia Alves</p>
+                <p>Hanover Fasion Brand</p>
+                <p>Aaron Martinex</p>
+                <p>Gucci</p>
+              </div>
+              <div className="subHoverImages">
+                <Link to="/">
+                  <div className="subHoverImages-div">
+                    <img
+                      src="images/brandsHover/paul-cuoco-CO2vOhPqlrM-unsplash.webp"
+                      alt="subhoverImage"
+                      loading="lazy"
+                    />
+                  </div>
+                </Link>
+                <Link to="/">
+                  <div className="subHoverImages-div">
+                    <img
+                      src="images/brandsHover/jonas-b-AVSxYIcBxoM-unsplash.webp"
+                      alt="subhoverImage"
+                      loading="lazy"
+                    />
+                  </div>
+                </Link>
+                <Link to="/">
+                  <div className="subHoverImages-div">
+                    <img
+                      src="images/brandsHover/cornelia-ng-zZLhoEwGCeM-unsplash.webp"
+                      alt="subhoverImage"
+                      loading="lazy"
+                    />
+                  </div>
+                </Link>
+                <Link to="/">
+                  <div className="subHoverImages-div">
+                    <img
+                      src="images/brandsHover/mostafa-mahmoudi-J4DnKxz_3sA-unsplash.webp"
+                      alt="subhoverImage"
+                      loading="lazy"
+                    />
+                  </div>
+                </Link>
+                <Link to="/">
+                  <div className="subHoverImages-div">
+                    <img
+                      src="images/brandsHover/john-torcasio-TJrkkhdB39E-unsplash.webp"
+                      alt="subhoverImage"
+                      loading="lazy"
+                    />
+                  </div>
+                </Link>
+                <Link to="/">
+                  <div className="subHoverImages-div">
+                    <img
+                      src="images/brandsHover/arno-senoner-KKZhQk3j0yA-unsplash.webp"
+                      alt="subhoverImage"
+                      loading="lazy"
+                    />
+                  </div>
+                </Link>
+                <Link to="/">
+                  <div className="subHoverImages-div">
+                    <img
+                      src="images/brandsHover/tom-radetzki-trdk1R0F3tg-unsplash.webp"
+                      alt="subhoverImage"
+                      loading="lazy"
+                    />
+                  </div>
+                </Link>
+                <Link to="/">
+                  <div className="subHoverImages-div">
+                    <img
+                      src="images/brandsHover/paul-lichtblau-updW-QUccFE-unsplash.webp"
+                      alt="subhoverImage"
+                      loading="lazy"
+                    />
+                  </div>
+                </Link>
+              </div>
             </div>
-            <div className="ManageBrands">
-              <b>
-                <h4>Manage your brands</h4>
-              </b>
-              <p>Dulale Diva</p>
-              <p>Light Studio</p>
-              <p>Ellen Joe</p>
-              <p>Dallas</p>
-              <p>Mag</p>
-              <p>Loop</p>
-              <p>Syntia Delaney</p>
-              <p>Emillia</p>
-            </div>
-            <div className="ManageBrands">
-              <b>
-                <h4>Popular brands</h4>
-              </b>
-              <p>Julia Alves</p>
-              <p>Hanover Fasion Brand</p>
-              <p>Aaron Martinex</p>
-              <p>Gucci</p>
-            </div>
-            <div className="subHoverImages">
-              <Link to="/">
-                <div className="subHoverImages-div">
-                  <img
-                    src="images/brandsHover/paul-cuoco-CO2vOhPqlrM-unsplash.webp"
-                    alt="subhoverImage"
-                    loading="lazy"
-                  />
-                </div>
-              </Link>
-              <Link to="/">
-                <div className="subHoverImages-div">
-                  <img
-                    src="images/brandsHover/jonas-b-AVSxYIcBxoM-unsplash.webp"
-                    alt="subhoverImage"
-                    loading="lazy"
-                  />
-                </div>
-              </Link>
-              <Link to="/">
-                <div className="subHoverImages-div">
-                  <img
-                    src="images/brandsHover/cornelia-ng-zZLhoEwGCeM-unsplash.webp"
-                    alt="subhoverImage"
-                    loading="lazy"
-                  />
-                </div>
-              </Link>
-              <Link to="/">
-                <div className="subHoverImages-div">
-                  <img
-                    src="images/brandsHover/mostafa-mahmoudi-J4DnKxz_3sA-unsplash.webp"
-                    alt="subhoverImage"
-                    loading="lazy"
-                  />
-                </div>
-              </Link>
-              <Link to="/">
-                <div className="subHoverImages-div">
-                  <img
-                    src="images/brandsHover/john-torcasio-TJrkkhdB39E-unsplash.webp"
-                    alt="subhoverImage"
-                    loading="lazy"
-                  />
-                </div>
-              </Link>
-              <Link to="/">
-                <div className="subHoverImages-div">
-                  <img
-                    src="images/brandsHover/arno-senoner-KKZhQk3j0yA-unsplash.webp"
-                    alt="subhoverImage"
-                    loading="lazy"
-                  />
-                </div>
-              </Link>
-              <Link to="/">
-                <div className="subHoverImages-div">
-                  <img
-                    src="images/brandsHover/tom-radetzki-trdk1R0F3tg-unsplash.webp"
-                    alt="subhoverImage"
-                    loading="lazy"
-                  />
-                </div>
-              </Link>
-              <Link to="/">
-                <div className="subHoverImages-div">
-                  <img
-                    src="images/brandsHover/paul-lichtblau-updW-QUccFE-unsplash.webp"
-                    alt="subhoverImage"
-                    loading="lazy"
-                  />
-                </div>
-              </Link>
-            </div>
-          </div>
+          )}
         </div>
       </nav>
     </>
