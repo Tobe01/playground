@@ -395,35 +395,31 @@ export function Header({ updateQuantity }) {
 
         <div className="bottom-nav">
           <div className="bottom-sub">
-            <div
-              onMouseEnter={showSubHover}
-              onMouseLeave={exitSubHover}
-              className="NewHover"
-            >
+            <div onMouseEnter={showSubHover} className="NewHover">
               <p>NEW IN</p>
             </div>
-            <div className="NewHover">
+            <div onMouseEnter={showSubHover} className="NewHover">
               <p>CLOTHING</p>
             </div>
-            <div className="NewHover">
+            <div onMouseEnter={showSubHover} className="NewHover">
               <p>SHOES</p>
             </div>
-            <div className="NewHover">
+            <div onMouseEnter={showSubHover} className="NewHover">
               <p>ACCESSORIES</p>
             </div>
-            <div className="NewHover">
+            <div onMouseEnter={showSubHover} className="NewHover">
               <p>SPORT</p>
             </div>
-            <div className="NewHover">
+            <div onMouseEnter={showSubHover} className="NewHover">
               <p>BRANDS</p>
             </div>
-            <div className="NewHover">
+            <div onMouseEnter={showSubHover} className="NewHover">
               <p>DESIGNER</p>
             </div>
-            <div className="NewHover">
+            <div onMouseEnter={showSubHover} className="NewHover">
               <p>RE-ZAYRA</p>
             </div>
-            <div className="NewHover">
+            <div onMouseEnter={showSubHover} className="NewHover">
               <p>SALE</p>
             </div>
           </div>
@@ -462,41 +458,75 @@ export function Header({ updateQuantity }) {
           </div>
 
           {isVisible && (
-            <div className="subHover">
+            <div onMouseLeave={exitSubHover} className="subHover">
               <div className="brandsA-Z">
                 <b>
                   <h4>Brands A-Z</h4>
                 </b>
-                <p>Clothing brands</p>
-                <p>Shoe brands</p>
-                <p>Accessories brands</p>
-                <p>Sports brands</p>
-                <p>Designer brands</p>
+                <Link to="/shop">
+                  <p>Clothing brands</p>
+                </Link>
+                <Link to="/shop">
+                  <p>Shoe brands</p>
+                </Link>
+                <Link to="/shop">
+                  <p>Accessories brands</p>
+                </Link>
+                <Link to="/shop">
+                  <p>Sports brands</p>
+                </Link>
+                <Link to="/shop">
+                  <p>Designer brands</p>
+                </Link>
               </div>
               <div className="ManageBrands">
                 <b>
                   <h4>Manage your brands</h4>
                 </b>
-                <p>Dulale Diva</p>
-                <p>Light Studio</p>
-                <p>Ellen Joe</p>
-                <p>Dallas</p>
-                <p>Mag</p>
-                <p>Loop</p>
-                <p>Syntia Delaney</p>
-                <p>Emillia</p>
+                <Link to="/shop">
+                  <p>Dulale Diva</p>
+                </Link>
+                <Link to="/shop">
+                  <p>Light Studio</p>
+                </Link>
+                <Link to="/shop">
+                  <p>Ellen Joe</p>
+                </Link>
+                <Link to="/shop">
+                  <p>Dallas</p>
+                </Link>
+                <Link to="/shop">
+                  <p>Mag</p>
+                </Link>
+                <Link to="/shop">
+                  <p>Loop</p>
+                </Link>
+                <Link to="/shop">
+                  <p>Syntia Delaney</p>
+                </Link>
+                <Link to="/shop">
+                  <p>Emillia</p>
+                </Link>
               </div>
               <div className="ManageBrands">
                 <b>
                   <h4>Popular brands</h4>
                 </b>
-                <p>Julia Alves</p>
-                <p>Hanover Fasion Brand</p>
-                <p>Aaron Martinex</p>
-                <p>Gucci</p>
+                <Link to="/shop">
+                  <p>Julia Alves</p>
+                </Link>
+                <Link to="/shop">
+                  <p>Hanover Fasion Brand</p>
+                </Link>
+                <Link to="/shop">
+                  <p>Aaron Martinex</p>
+                </Link>
+                <Link to="/shop">
+                  <p>Gucci</p>
+                </Link>
               </div>
               <div className="subHoverImages">
-                <Link to="/">
+                <Link to="/shop">
                   <div className="subHoverImages-div">
                     <img
                       src="images/brandsHover/paul-cuoco-CO2vOhPqlrM-unsplash.webp"
@@ -505,7 +535,7 @@ export function Header({ updateQuantity }) {
                     />
                   </div>
                 </Link>
-                <Link to="/">
+                <Link to="/shop">
                   <div className="subHoverImages-div">
                     <img
                       src="images/brandsHover/jonas-b-AVSxYIcBxoM-unsplash.webp"
@@ -514,7 +544,7 @@ export function Header({ updateQuantity }) {
                     />
                   </div>
                 </Link>
-                <Link to="/">
+                <Link to="/shop">
                   <div className="subHoverImages-div">
                     <img
                       src="images/brandsHover/cornelia-ng-zZLhoEwGCeM-unsplash.webp"
@@ -523,7 +553,7 @@ export function Header({ updateQuantity }) {
                     />
                   </div>
                 </Link>
-                <Link to="/">
+                <Link to="/shop">
                   <div className="subHoverImages-div">
                     <img
                       src="images/brandsHover/mostafa-mahmoudi-J4DnKxz_3sA-unsplash.webp"
@@ -532,7 +562,7 @@ export function Header({ updateQuantity }) {
                     />
                   </div>
                 </Link>
-                <Link to="/">
+                <Link to="/shop">
                   <div className="subHoverImages-div">
                     <img
                       src="images/brandsHover/john-torcasio-TJrkkhdB39E-unsplash.webp"
@@ -541,7 +571,7 @@ export function Header({ updateQuantity }) {
                     />
                   </div>
                 </Link>
-                <Link to="/">
+                <Link to="/shop">
                   <div className="subHoverImages-div">
                     <img
                       src="images/brandsHover/arno-senoner-KKZhQk3j0yA-unsplash.webp"
@@ -550,7 +580,7 @@ export function Header({ updateQuantity }) {
                     />
                   </div>
                 </Link>
-                <Link to="/">
+                <Link to="/shop">
                   <div className="subHoverImages-div">
                     <img
                       src="images/brandsHover/tom-radetzki-trdk1R0F3tg-unsplash.webp"
@@ -559,7 +589,7 @@ export function Header({ updateQuantity }) {
                     />
                   </div>
                 </Link>
-                <Link to="/">
+                <Link to="/shop">
                   <div className="subHoverImages-div">
                     <img
                       src="images/brandsHover/paul-lichtblau-updW-QUccFE-unsplash.webp"

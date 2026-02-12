@@ -29,6 +29,11 @@
   cursor: pointer;
 }
 
+.ManageBrands p:hover,
+.brandsA-Z p:hover {
+  color: red;
+}
+
 .subHoverImages {
   display: grid;
   height: 100%;
