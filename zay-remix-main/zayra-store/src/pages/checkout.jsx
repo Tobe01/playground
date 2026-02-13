@@ -1,3 +1,4 @@
+import { toast } from 'react-toastify';
 import { Header } from "../components/header";
 import { Link } from "react-router-dom";
 import { useState } from "react";
@@ -42,17 +43,23 @@ export function Checkout() {
       saveCartItems(nextItems);
       return nextItems;
     });
+
+    toast.success("Item removed from cart");
   }
 
   function paymentNotAvailable(){
     if(isAvailable === false){
-      setIsAvailable(alert("Payment Method Not available yet!"));
+      setIsAvailable(toast.info("Payment Method Not available yet!", {
+       position: 'top-center'
+      }));
     }
   }
 
   function paymentUnavailable(){
     if(unAvailable === false){
-      setUnAvailable(alert("Payment Method Not available yet!"))
+      setUnAvailable(toast.info("Payment Method Not available yet!", {
+        position: 'top-center'
+      }))
     }
   }
 

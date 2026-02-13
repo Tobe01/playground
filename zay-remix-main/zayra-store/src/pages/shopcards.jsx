@@ -95,6 +95,7 @@ export function ShopCard({
           image1={image1}
           image2={image2}
           image3={image3}
+          itemName={itemName}
           itemDescription={itemDescription}
           priceCents={priceCents}
           count={count}

@@ -95,6 +95,7 @@ export function MenCard({
           image1={image1}
           image2={image2}
           image3={image3}
+          itemName={itemName}
           itemDescription={itemDescription}
           priceCents={priceCents}
           count={count}
@@ -157,7 +158,7 @@ export function MenCard({
             <h1>{itemName}</h1>
             <h3>{itemDescription}</h3>
           </div>
-          <p>{`${(priceCents / 100).toFixed(2)}`}</p>
+          <p>{`$${(priceCents / 100).toFixed(2)}`}</p>
           <div className="colors-container">
             <button onClick={showBtn1} className="btn1">
               <img src={`images/colors/${btn1}`} alt="colorPicker" />

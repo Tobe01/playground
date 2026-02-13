@@ -1,9 +1,11 @@
 import { useState } from "react";
+import { toast } from "react-toastify";
 
 export function ViewCard({
   image1,
   image2,
   image3,
+  itemName,
   itemDescription,
   priceCents,
   count,
@@ -32,14 +34,24 @@ export function ViewCard({
       priceCents,
       quantity: quantity > 0 ? quantity : 1,
     });
+
+    toast.success(`${itemName}, added to cart`);
   }
 
   function increaseQuantity() {
     setQuantity((currentQuantity) => Math.min(currentQuantity + 1, 10));
+
+    if(quantity === 10){
+      toast.error("quantity can't be more than 10")
+    }
   }
 
   function decreaseQuantity() {
-    setQuantity((currentQuantity) => Math.max(currentQuantity - 1, 0));
+    setQuantity((currentQuantity) => Math.max(currentQuantity - 1, 1));
+
+    if(quantity === 1){
+      toast.error("quantity can't be less than 1")
+    }
   }
 
   return (
