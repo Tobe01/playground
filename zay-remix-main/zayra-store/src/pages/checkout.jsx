@@ -10,7 +10,7 @@ import "../media-queries/checkout.css";
 export function Checkout() {
   const [ isAvailable, setIsAvailable ] = useState(false);
   const [ unAvailable, setUnAvailable ] = useState(false);
-  const [checkoutItems, setCheckoutItems] = useState(() => getCartItems());
+  const [ checkoutItems, setCheckoutItems ] = useState(() => getCartItems());
   const cartCount = getCartQuantity(checkoutItems);
   const subtotalCents = checkoutItems.reduce(
     (total, item) =>

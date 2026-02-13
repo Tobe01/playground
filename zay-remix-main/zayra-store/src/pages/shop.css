@@ -91,11 +91,14 @@ img {
 }
 
 .arrowDiv button {
+  position: relative;
   border: none;
   border-radius: 50%;
-  padding: 5px;
+  padding: 20px;
   cursor: pointer;
   background-color: white;
+  margin-top: auto;
+  margin-bottom: auto;
 }
 
 .arrowDiv button:hover {
@@ -107,11 +110,15 @@ img {
 }
 
 .arrowDiv button img {
+  position: absolute;
+  top: 0;
+  left: 5px;
   width: 30px;
   cursor: pointer;
 }
 
 .imgContainer img {
+  position: absolute;
   height: 100%;
   width: 100%;
   object-fit: cover;
@@ -122,11 +129,6 @@ img {
 
 .imgContainer img:hover {
   transform: scale(1.01);
-}
-
-.imgContainer img:nth-child(2),
-img:nth-child(3) {
-  visibility: hidden;
 }
 
 .itemsCont {
@@ -591,6 +593,7 @@ img:nth-child(3) {
 
 .bottomItem-container {
   padding-left: 10px;
+  /* background-color: purple; */
 }
 
 .bottomItem-top h1 {

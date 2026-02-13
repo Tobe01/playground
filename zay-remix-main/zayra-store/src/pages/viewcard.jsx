@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 export function ViewCard({
   image1,
   image2,
@@ -13,6 +15,16 @@ export function ViewCard({
   setQuantity,
   addItem,
 }) {
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  function rightSlide() {
+    setCurrentSlide((prev) => (prev + 1) % 3);
+  }
+
+  function leftSlide() {
+    setCurrentSlide((prev) => (prev - 1 + 3) % 3);
+  }
+
   function handleAddToCart() {
     addItem({
       Image: image1,
@@ -43,32 +55,38 @@ export function ViewCard({
 
         <div className="viewCards">
           <div className="imgContainer">
-            <img
-              src={`images/shopItems/${image1}`}
-              alt="item-images"
-              loading="lazy"
-            />
+            {currentSlide === 0 && (
+              <img
+                src={`images/shopItems/${image1}`}
+                alt="item-images"
+                loading="lazy"
+              />
+            )}
 
-            <img
-              src={`images/shopItems/${image2}`}
-              alt="item-images"
-              loading="lazy"
-            />
+            {currentSlide === 1 && (
+              <img
+                src={`images/shopItems/${image2}`}
+                alt="item-images"
+                loading="lazy"
+              />
+            )}
 
-            <img
-              src={`images/shopItems/${image3}`}
-              alt="item-images"
-              loading="lazy"
-            />
+            {currentSlide === 2 && (
+              <img
+                src={`images/shopItems/${image3}`}
+                alt="item-images"
+                loading="lazy"
+              />
+            )}
 
             <div className="arrowDiv">
-              <button>
+              <button onClick={leftSlide}>
                 <img
                   src="images/icons/keyboard_arrow_left_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg"
                   alt="arrowLeft"
                 />
               </button>
-              <button>
+              <button onClick={rightSlide}>
                 <img
                   src="images/icons/keyboard_arrow_right_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg"
                   alt="arrowRight"

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ViewCard } from './viewcard';
+import { ViewCard } from "./viewcard";
 import "./shop.css";
 import "../media-queries/shop.css";
 
@@ -21,24 +21,55 @@ export function KidsCard({
   setQuantity,
   addItem,
 }) {
-  const [ showPreview, setShowPreview ] = useState(false);
-  const [ showHover, setShowHover ] = useState(false);
-      
-    function displayItems(){
-      if(showPreview === false){
-        setShowPreview(true);
-      } else {
-        setShowPreview(false)
-      }
-    }
+  const [showPreview, setShowPreview] = useState(false);
+  const [showHover, setShowHover] = useState(false);
 
-    function closeItems(){
-      if(showPreview === true){
-        setShowPreview(false)
-      } else {
-        setShowPreview(true)
-      }
+  const [firstColor, setFirstColor] = useState(false);
+  const [secondColor, setSecondColor] = useState(true);
+  const [thirdColor, setThirdColor] = useState(true);
+
+  function showBtn1(event) {
+    event.stopPropagation();
+    if (firstColor === false) {
+      setFirstColor(true);
+      setSecondColor(false);
+      setThirdColor(false);
     }
+  }
+
+  function showBtn2(event) {
+    event.stopPropagation();
+    if (secondColor === false) {
+      setSecondColor(true);
+      setFirstColor(false);
+      setThirdColor(false);
+    }
+  }
+
+  function showBtn3(event) {
+    event.stopPropagation();
+    if (thirdColor === false) {
+      setThirdColor(true);
+      setFirstColor(false);
+      setSecondColor(false);
+    }
+  }
+
+  function displayItems() {
+    if (showPreview === false) {
+      setShowPreview(true);
+    } else {
+      setShowPreview(false);
+    }
+  }
+
+  function closeItems() {
+    if (showPreview === true) {
+      setShowPreview(false);
+    } else {
+      setShowPreview(true);
+    }
+  }
 
   function hoverView() {
     if (showHover === false) {
@@ -57,24 +88,25 @@ export function KidsCard({
   }
 
   return (
-    
     <>
       {/* if showPreview is true, ViewCard component is visible */}
-      {showPreview && <ViewCard
-        image1={image1}
-        image2={image2}
-        image3={image3}
-        itemDescription={itemDescription}
-        priceCents={priceCents}
-        count={count}
-        reviews={reviews}
-        itemCategory={itemCategory}
-        productDesc={productDesc}
-        onClickAction={closeItems}
-        quantity={quantity}
-        setQuantity={setQuantity}
-        addItem={addItem}
-      />}
+      {showPreview && (
+        <ViewCard
+          image1={image1}
+          image2={image2}
+          image3={image3}
+          itemDescription={itemDescription}
+          priceCents={priceCents}
+          count={count}
+          reviews={reviews}
+          itemCategory={itemCategory}
+          productDesc={productDesc}
+          onClickAction={closeItems}
+          quantity={quantity}
+          setQuantity={setQuantity}
+          addItem={addItem}
+        />
+      )}
       <div
         onMouseEnter={hoverView}
         onMouseLeave={hoverOut}
@@ -82,26 +114,32 @@ export function KidsCard({
         className="card-item-container"
       >
         <div className="topImg-container">
-          <img
-            src={`images/shopItems/${image1}`}
-            alt="item-images"
-            loading="lazy"
-            className="images"
-          />
+          {firstColor && (
+            <img
+              src={`images/shopItems/${image2}`}
+              alt="item-images"
+              loading="lazy"
+              className="images"
+            />
+          )}
 
-          <img
-            src={`images/shopItems/${image2}`}
-            alt="item-images"
-            loading="lazy"
-            className="images"
-          />
+          {secondColor && (
+            <img
+              src={`images/shopItems/${image1}`}
+              alt="item-images"
+              loading="lazy"
+              className="images"
+            />
+          )}
 
-          <img
-            src={`images/shopItems/${image3}`}
-            alt="item-images"
-            loading="lazy"
-            className="images"
-          />
+          {thirdColor && (
+            <img
+              src={`images/shopItems/${image3}`}
+              alt="item-images"
+              loading="lazy"
+              className="images"
+            />
+          )}
 
           {showHover && (
             <div className="HoverDiv">
@@ -121,15 +159,15 @@ export function KidsCard({
           </div>
           <p>{`${(priceCents / 100).toFixed(2)}`}</p>
           <div className="colors-container">
-            <button className="btn1">
+            <button onClick={showBtn1} className="btn1">
               <img src={`images/colors/${btn1}`} alt="colorPicker" />
             </button>
 
-            <button className="btn1">
+            <button onClick={showBtn2} className="btn1">
               <img src={`images/colors/${btn2}`} alt="colorPicker" />
             </button>
 
-            <button className="btn1">
+            <button onClick={showBtn3} className="btn1">
               <img src={`images/colors/${btn3}`} alt="colorPicker" />
             </button>
           </div>
