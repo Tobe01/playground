@@ -1,4 +1,5 @@
 import { useState } from "react";
+import dayjs from 'dayjs';
 import { Link } from "react-router-dom";
 import { OrdersHeader } from "../components/orders-header";
 import { getCartItems, getCartQuantity } from "../../data/cart";
@@ -7,7 +8,20 @@ import "../media-queries/orders.css";
 import "../media-queries/orders-headers.css";
 
 export function Orders() {
-  const [ checkoutItems ] = useState(() => getCartItems());
+   const [edit, setEdit] = useState(false);
+  const [address, setAddress] = useState(false);
+  const [contacts, setContacts] = useState(true);
+  const [contactDetails, setContactDetails] = useState(false);
+
+  const [firstName, setFirstName] = useState();
+  const [lastName, setLastName] = useState();
+  const [country, setCountry] = useState();
+  const [phone, setPhone] = useState();
+  const [payMethod, setPayMethod] = useState();
+  const [houseAddress, setHouseAddress] = useState();
+  const [city, setCity] = useState();
+
+  const [checkoutItems] = useState(() => getCartItems());
   const cartCount = getCartQuantity(checkoutItems);
   const subtotalCents = checkoutItems.reduce(
     (total, item) =>
@@ -17,9 +31,36 @@ export function Orders() {
   const discountCents = 660;
   const orderTotalCents = Math.max(subtotalCents - discountCents, 0);
 
-  const [edit, setEdit] = useState(false);
-  const [address, setAddress] = useState(false);
-  const [contacts, setContacts] = useState(true);
+  function getFirstName(event){
+    setFirstName(event.target.value);
+  }
+
+  function getLastName(event){
+    setLastName(event.target.value);
+  }
+
+  function getCountry(event){
+    setCountry(event.target.value)
+  }
+
+  function getPhone(event){
+    setPhone(event.target.value);
+  }
+
+  function getPaymentMethod(event){
+    setPayMethod(event.target.value)
+  }
+
+  function getAddress(event){
+    setHouseAddress(event.target.value);
+  }
+
+  function getCity(event){
+    setCity(event.target.value)
+  }
+
+  const currentDate = dayjs();
+  const formatDate = currentDate.format("MMMM, D YYYY")
 
   function showModal() {
     if (edit === false) {
@@ -42,12 +83,26 @@ export function Orders() {
       setContacts(false);
       setAddress(true);
     }
+
+    localStorage.setItem('contacts', firstName, lastName, country, phone);
   }
 
   function showContacts() {
     if (contacts === false) {
       setContacts(true);
       setAddress(false);
+    }
+  }
+
+  function showContactDetails() {
+    if (contactDetails === false) {
+      setContactDetails(true);
+    }
+  }
+
+  function closeContactDetails(){
+    if(contactDetails === true){
+      setContactDetails(false);
     }
   }
 
@@ -66,6 +121,54 @@ export function Orders() {
             </Link>
           </div>
         </div>
+      )}
+
+      {/* Confirm orders modal */}
+      {contactDetails && (
+        <section className="mainConfirmPayModal">
+          <div className="confirmPayment-modal">
+            <div className="confirmDescriptions">
+              <h2>Comfirm your payment details</h2>
+              <p>Quick and secure</p>
+            </div>
+
+            <div className="mainDetailsContainer">
+              <div>
+                <h1>Details</h1>
+
+                <div className="detailsContainer">
+                  <div className="description">
+                    <div>Date:</div>
+                    <div>Name:</div>
+                    <div>Address:</div>
+                    <div>Phone:</div>
+                    <div>Payment Method:</div>
+                  </div>
+
+                  <div className="response">
+                    <div>{formatDate}</div>
+                    <div>
+                      <div>{firstName} {lastName}</div>
+                    </div>
+                    <div>{houseAddress}, {city}, {country}</div>
+                    <div>{phone}</div>
+                    <div>{payMethod}</div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="detailsAmount">
+                <div>Total amount</div>
+                <div>{`$${(orderTotalCents / 100).toFixed(2)}`}</div>
+              </div>
+            </div>
+
+            <div className="confirmEdit">
+              <button onClick={closeContactDetails}>Edit Details</button>
+              <button>Confirm Details</button>
+            </div>
+          </div>
+        </section>
       )}
 
       {/* Checkout Modal */}
@@ -258,14 +361,26 @@ export function Orders() {
               <h1>Delivery Options</h1>
               <div className="selectDelivery">
                 <div className="selectDeliverySub">
-                  <button onClick={showContacts} style={{backgroundColor: contacts ? 'grey' : 'white', color: contacts ? 'white' : 'grey'}} >
+                  <button
+                    onClick={showContacts}
+                    style={{
+                      backgroundColor: contacts ? "grey" : "white",
+                      color: contacts ? "white" : "grey",
+                    }}
+                  >
                     <img
                       src="images/icons/newdelivery.svg"
                       alt="deliveryvanIcon"
                     />
                     <p>Delivery Details</p>
                   </button>
-                  <button onClick={showAddress} style={{backgroundColor: address ? 'grey' : 'white', color: address ? 'white' : 'grey'}} >
+                  <button
+                    onClick={showAddress}
+                    style={{
+                      backgroundColor: address ? "grey" : "white",
+                      color: address ? "white" : "grey",
+                    }}
+                  >
                     <img
                       src="images/icons/newlocation.svg"
                       alt="locationsIcon"
@@ -283,6 +398,7 @@ export function Orders() {
                       <label>First Name</label>
                       <div>
                         <input
+                          onChange={getFirstName}
                           type="text"
                           name="name"
                           placeholder="Enter First Name"
@@ -295,6 +411,7 @@ export function Orders() {
                       <label>Last Name</label>
                       <div>
                         <input
+                          onChange={getLastName}
                           type="text"
                           name="surname"
                           placeholder="Enter Last Name"
@@ -305,7 +422,8 @@ export function Orders() {
 
                     <div>
                       <label>Country</label>
-                      <select name="Country" id="Country" required>
+                      <select onChange={getCountry} name="Country" id="Country" required>
+                        <option>Select Country</option>
                         <option value="NG">Nigeria</option>
                         <option value="GB">United Kingdom</option>
                         <option value="US">United States</option>
@@ -316,6 +434,7 @@ export function Orders() {
                       <label>Phone Number</label>
                       <div>
                         <input
+                          onChange={getPhone}
                           type="text"
                           name="phone number"
                           placeholder="Enter Valid Phone Number"
@@ -334,6 +453,7 @@ export function Orders() {
                         <label>Address Line 1</label>
                         <div>
                           <input
+                            onChange={getAddress}
                             type="text"
                             name="Address"
                             placeholder="Enter Contact  Address 1"
@@ -358,6 +478,7 @@ export function Orders() {
                         <label>City</label>
                         <div>
                           <input
+                            onChange={getCity}
                             type="text"
                             name="city"
                             placeholder="Enter City"
@@ -437,7 +558,8 @@ export function Orders() {
                     <div className="orderDiscount">
                       <h4>Discounts included:</h4>
                       <p>
-                        70% SALE <span>{`-$${(discountCents / 100).toFixed(2)}`}</span>
+                        70% SALE{" "}
+                        <span>{`-$${(discountCents / 100).toFixed(2)}`}</span>
                       </p>
                     </div>
                   </div>
@@ -470,15 +592,17 @@ export function Orders() {
                     loading="lazy"
                   />
                 </div>
-                <select className="selectFund" name="payment method" required>
+                <select onChange={getPaymentMethod} className="selectFund" name="payment method" required>
                   <option>Select your prefered payment method</option>
                   <option>Paystack</option>
+                  <option>Alat-Pay</option>
                   <option>MasterCard</option>
+                  <option>Visa</option>
                 </select>
               </div>
 
               <div className="submitOrder">
-                <button>Make Payment</button>
+                <button onClick={showContactDetails}>Make Payment</button>
               </div>
             </div>
           </div>
