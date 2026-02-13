@@ -42,7 +42,9 @@ export function ViewCard({
     setQuantity((currentQuantity) => Math.min(currentQuantity + 1, 10));
 
     if(quantity === 10){
-      toast.error("quantity can't be more than 10")
+      toast.error("quantity can't be more than 10", {
+        position: 'bottom-right'
+      })
     }
   }
 
@@ -50,7 +52,9 @@ export function ViewCard({
     setQuantity((currentQuantity) => Math.max(currentQuantity - 1, 1));
 
     if(quantity === 1){
-      toast.error("quantity can't be less than 1")
+      toast.error("quantity can't be less than 1", {
+        position: 'bottom-right'
+      })
     }
   }
 

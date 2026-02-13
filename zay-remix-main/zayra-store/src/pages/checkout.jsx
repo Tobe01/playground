@@ -44,7 +44,7 @@ export function Checkout() {
       return nextItems;
     });
 
-    toast.success("Item removed from cart");
+    toast.info("Item removed from cart");
   }
 
   function paymentNotAvailable(){
