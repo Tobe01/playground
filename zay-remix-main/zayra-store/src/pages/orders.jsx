@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import dayjs from "dayjs";
 import { Link } from "react-router-dom";
 import { OrdersHeader } from "../components/orders-header";
@@ -123,6 +123,10 @@ export function Orders() {
       setShowCheckoutModal(true);
     }
   }
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <>
@@ -379,10 +383,7 @@ export function Orders() {
                 </div>
               </div>
 
-              <button
-                className="purchase--btn"
-                type="button"
-              >
+              <button className="purchase--btn" type="button">
                 Checkout
               </button>
             </form>
@@ -622,25 +623,22 @@ export function Orders() {
                 <p>Payment Method</p>
                 <div>
                   <img
-                    src="images/payments/images (1).webp"
-                    alt="PaymentsIcon"
-                    loading="lazy"
+                    src="images/payments/068BjcjwBw0snwHIq0KNo5m-15.webp"
+                    alt="paymentsLogo"
                   />
                   <img
-                    src="images/payments/images.webp"
-                    alt="PaymentsIcon"
-                    loading="lazy"
+                    src="images/payments/apple-pay.webp"
+                    alt="paymentsLogo"
                   />
+                  <img src="images/payments/images.webp" alt="paymentsLogo" />
+                  <img src="images/payments/monnify.webp" alt="paymentsLogo" />
+                  <img src="images/payments/seampay.webp" alt="paymentsLogo" />
                   <img
-                    src="images/payments/images (1).webp"
-                    alt="PaymentsIcon"
-                    loading="lazy"
+                    src="images/payments/mastercard (1).webp"
+                    alt="paymentsLogo"
                   />
-                  <img
-                    src="images/payments/images (1).webp"
-                    alt="PaymentsIcon"
-                    loading="lazy"
-                  />
+                  <img src="images/payments/verve.webp" alt="paymentsLogo" />
+                  <img src="images/payments/visa.webp" alt="paymentsLogo" />
                 </div>
                 <select
                   onChange={getPaymentMethod}
@@ -651,6 +649,7 @@ export function Orders() {
                   <option>Select your prefered payment method</option>
                   <option>PayStack</option>
                   <option>AlatPay</option>
+                  <option>Verve</option>
                   <option>MasterCard</option>
                   <option>Visa</option>
                 </select>

@@ -1,9 +1,15 @@
 import { Link } from "react-router-dom";
 import { AuthHeader } from "../components/auth-header";
+import { useEffect } from "react";
 import "./login.css";
 import '../media-queries/signup.css';
 
 export function Signup() {
+  
+  useEffect(()=>{
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <>
       <title>Signup</title>

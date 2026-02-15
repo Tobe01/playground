@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Header } from "../components/header";
 import { Footer } from "../components/footer";
 import { ShopCard } from "./shopcards";
@@ -12,13 +12,16 @@ import { womensData } from '../../data/womensData.js';
 import { addToCart, getCartQuantity } from "../../data/cart";
 
 export function Shop() {
-  
   const [ quantity, setQuantity ] = useState(1);
   const [ updateQuantity, setUpdateQuantity ] = useState(() => getCartQuantity());
   const [ shopItems, setShopItems ] = useState(true);
   const [ mensItems, setMensItems ] = useState(false);
   const [ kidsItems, setKidsItems ] = useState(false);
   const [ womensItems, setWomensItems ] = useState(false);
+
+  useEffect(()=>{
+   window.scrollTo(0, 0);
+  }, []);
 
   function addItem(product){
     const nextCart = addToCart(product);

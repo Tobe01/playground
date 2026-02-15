@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Header } from '../components/header';
 import { Footer } from '../components/footer';
 import { Link } from 'react-router-dom';
@@ -8,6 +8,11 @@ import '../media-queries/homePage.css';
 
 export function HomePage(){
   const [ updateQuantity ] = useState(() => getCartQuantity());
+
+  useEffect(()=>{
+    window.scrollTo(0, 0);
+  }, []);
+  
   return(
     <>
       <title>Zayra Store</title>

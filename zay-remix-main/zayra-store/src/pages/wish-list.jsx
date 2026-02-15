@@ -1,9 +1,15 @@
 import { Link } from "react-router-dom";
 import { WishHeader } from "../components/wish-list-header";
+import { useEffect } from "react";
 import "./wish-list.css";
 import "../media-queries/wish-list.css";
 
 export function WishList() {
+  
+  useEffect(()=>{
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <>
       <title>Wishes</title>

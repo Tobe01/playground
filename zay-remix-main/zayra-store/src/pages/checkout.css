@@ -90,16 +90,11 @@
 }
 
 .backToShop{
-  color: black;
+  color: rgb(202, 16, 16);
   padding: 5px;
   cursor: pointer;
   display: flex;
   gap: 2px;
-}
-
-.backToShop:hover{
-  background-color: rgb(230, 224, 224);
-  color: red;
 }
 
 .mainCheckout-container {
@@ -157,7 +152,6 @@
 .checkoutItems p:first-of-type {
   color: green;
   margin-top: 20px;
-  font-size: 20px;
   font-weight: bold;
   margin: 0;
 }
@@ -173,24 +167,23 @@
 }
 
 .deleteContainer button {
-  width: 40px;
-  padding: 5px 0;
-  border-radius: 5px;
+  padding: 3px 5px;
+  border-radius: 3px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   border: none;
   color: transparent;
-  background-color: rgb(201, 17, 17);
+  background-color: rgb(202, 200, 200);
 }
 
 .deleteContainer button:hover {
-  background-color: rgb(245, 43, 43);
+  background-color: rgb(184, 182, 182);
 }
 
 .deleteContainer button:active {
-  background-color: rgb(134, 25, 25);
+  background-color: rgb(202, 200, 200);
 }
 
 .OrderSummary {
@@ -295,6 +288,7 @@ p {
   align-items: center;
   justify-content: space-between;
   margin-top: 10px;
+  gap: 7px;
 }
 
 .orderBottom img {

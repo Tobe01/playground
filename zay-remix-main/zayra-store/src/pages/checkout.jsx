@@ -1,7 +1,7 @@
 import { toast } from 'react-toastify';
 import { Header } from "../components/header";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { getCartItems, getCartQuantity, saveCartItems } from "../../data/cart";
 import "./items.css";
 import "./checkout.css";
@@ -63,6 +63,10 @@ export function Checkout() {
     }
   }
 
+  useEffect(()=>{
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <>
       <title>checkout</title>
@@ -95,7 +99,7 @@ export function Checkout() {
                   <Link to="/shop">
                     <div className="backToShop">
                       <span>
-                        <img src="../../public/images/icons/arrow_left_alt_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg" />
+                        <img src="../../public/images/icons/keyboard_arrow_left_24dp_8B1A10_FILL0_wght400_GRAD0_opsz24.svg" />
                       </span>
                       <p>Back to Shop</p>
                     </div>
@@ -154,7 +158,7 @@ export function Checkout() {
                               onClick={() => handleDeleteItem(cartItem.Image)}
                             >
                               <img
-                                src="images/icons/delete_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.svg"
+                                src="images/icons/delete_24dp_8B1A10_FILL0_wght400_GRAD0_opsz24.svg"
                                 alt="deleteIcon"
                               />
                             </button>
@@ -224,37 +228,33 @@ export function Checkout() {
                         alt="paymentsLogo"
                       />
                       <img
-                        src="images/payments/images (1).webp"
-                        alt="paymentsLogo"
-                      />
-                      <img
-                        src="images/payments/Mclick.webp"
-                        alt="paymentsLogo"
-                      />
-                      <img
                         src="images/payments/apple-pay.webp"
-                        alt="paymentsLogo"
-                      />
-                      <img
-                        src="images/payments/images (1).webp"
                         alt="paymentsLogo"
                       />
                       <img
                         src="images/payments/images.webp"
                         alt="paymentsLogo"
                       />
-                      <img
-                        src="images/payments/Mclick.webp"
+                      <img 
+                        src="images/payments/monnify.webp"
                         alt="paymentsLogo"
-                      />
-                      <img
-                        src="images/payments/images (1).webp"
+                        />
+                      <img 
+                        src="images/payments/seampay.webp"
                         alt="paymentsLogo"
-                      />
-                      <img
-                        src="images/payments/images (1).webp"
+                        />
+                      <img 
+                        src="images/payments/mastercard (1).webp"
                         alt="paymentsLogo"
-                      />
+                        />
+                      <img 
+                        src="images/payments/verve.webp"
+                        alt="paymentsLogo"
+                        />
+                      <img 
+                        src="images/payments/visa.webp"
+                        alt="paymentsLogo"
+                        />
                     </div>
                   </div>
                 </div>
