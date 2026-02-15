@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 import { activateHamburger, closeWindow } from "./drop-menu/dropdown";
 import { useState, useEffect } from "react";
 import "./header.css";
@@ -11,6 +12,16 @@ export function Header({ updateQuantity }) {
   const [search, setSearch] = useState(false);
   const [isChanged, setIsChanged] = useState(false);
   const [isVisible, setIsvisible] = useState(false);
+  const [searchParam, setSearchParam] = useState();
+  const [newin, setNewIn] = useState(false);
+  const [newin1, setNewIn1] = useState(false);
+  const [newin2, setNewIn2] = useState(false);
+  const [newin3, setNewIn3] = useState(false);
+  const [newin4, setNewIn4] = useState(false);
+  const [newin5, setNewIn5] = useState(false);
+  const [newin6, setNewIn6] = useState(false);
+  const [newin7, setNewIn7] = useState(false);
+  const [newin8, setNewIn8] = useState(false);
   const [inchange, setInchange] = useState(
     "REFRESH, REVIVE, RECIRCULATE: RE-ZAY",
   );
@@ -46,12 +57,82 @@ export function Header({ updateQuantity }) {
   function showSubHover() {
     if (isVisible === false) {
       setIsvisible(true);
+    } else {
+      setIsvisible(false);
     }
   }
 
-  function exitSubHover() {
-    if (isVisible === true) {
-      setIsvisible(false);
+  function getSearchParam(event){
+    setSearchParam(event.target.value);
+  }
+
+  function renderSearchParam(event){
+    if(event.key === "Enter"){
+      toast.info(`${searchParam} not yet available in store`);
+    }
+  }
+
+  function showNew(){
+    if(newin === false){
+      setNewIn(true);
+    } else {
+      setNewIn(false);
+    }
+  }
+  function showNew1(){
+    if(newin1 === false){
+      setNewIn1(true);
+    } else {
+      setNewIn1(false);
+    }
+  }
+  function showNew2(){
+    if(newin2 === false){
+      setNewIn2(true);
+    } else {
+      setNewIn2(false);
+    }
+  }
+  function showNew3(){
+    if(newin3 === false){
+      setNewIn3(true);
+    } else {
+      setNewIn3(false);
+    }
+  }
+  function showNew4(){
+    if(newin4 === false){
+      setNewIn4(true);
+    } else {
+      setNewIn4(false);
+    }
+  }
+  function showNew5(){
+    if(newin5 === false){
+      setNewIn5(true);
+    } else {
+      setNewIn5(false);
+    }
+  }
+  function showNew6(){
+    if(newin6 === false){
+      setNewIn6(true);
+    } else {
+      setNewIn6(false);
+    }
+  }
+  function showNew7(){
+    if(newin7 === false){
+      setNewIn7(true);
+    } else {
+      setNewIn7(false);
+    }
+  }
+  function showNew8(){
+    if(newin8 === false){
+      setNewIn8(true);
+    } else {
+      setNewIn8(false);
     }
   }
 
@@ -106,13 +187,18 @@ export function Header({ updateQuantity }) {
 
           <div className="mobile-searchbar-main">
             <div className="mobile-search-bar">
-              <div className="first-button">
+              <div onClick={()=>{
+                toast.info(`${searchParam} not yet available in store`);
+              }} className="first-button">
                 <img
                   src="images/icons/search_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg"
                   alt="search icon"
                 />
               </div>
               <input
+                onKeyDown={renderSearchParam}
+                value={searchParam}
+                onChange={getSearchParam}
                 className="mobile-input"
                 placeholder="Search for products, brands, or categories"
               />
@@ -395,31 +481,58 @@ export function Header({ updateQuantity }) {
 
         <div className="bottom-nav">
           <div className="bottom-sub">
-            <div onMouseEnter={showSubHover} className="NewHover">
+            <div onClick={()=>{
+              showSubHover();
+              showNew();
+              }} style={{backgroundColor:  newin ? 'grey' : 'black'}} className="NewHover">
               <p>NEW IN</p>
             </div>
-            <div onMouseEnter={showSubHover} className="NewHover">
+            <div onClick={()=>{
+              showSubHover();
+              showNew1();
+              }} style={{backgroundColor:  newin1 ? 'grey' : 'black'}} className="NewHover">
               <p>CLOTHING</p>
             </div>
-            <div onMouseEnter={showSubHover} className="NewHover">
+            <div onClick={()=>{
+              showSubHover();
+              showNew2();
+              }} style={{backgroundColor:  newin2 ? 'grey' : 'black'}} className="NewHover">
               <p>SHOES</p>
             </div>
-            <div onMouseEnter={showSubHover} className="NewHover">
+            <div onClick={()=>{
+              showSubHover();
+              showNew3();
+              }} style={{backgroundColor:  newin3 ? 'grey' : 'black'}} className="NewHover">
               <p>ACCESSORIES</p>
             </div>
-            <div onMouseEnter={showSubHover} className="NewHover">
+            <div onClick={()=>{
+              showSubHover();
+              showNew4();
+              }} style={{backgroundColor:  newin4 ? 'grey' : 'black'}} className="NewHover">
               <p>SPORT</p>
             </div>
-            <div onMouseEnter={showSubHover} className="NewHover">
+            <div onClick={()=>{
+              showSubHover();
+              showNew5();
+              }} style={{backgroundColor:  newin5 ? 'grey' : 'black'}} className="NewHover">
               <p>BRANDS</p>
             </div>
-            <div onMouseEnter={showSubHover} className="NewHover">
+            <div onClick={()=>{
+              showSubHover();
+              showNew6();
+              }} style={{backgroundColor:  newin6 ? 'grey' : 'black'}} className="NewHover">
               <p>DESIGNER</p>
             </div>
-            <div onMouseEnter={showSubHover} className="NewHover">
+            <div onClick={()=>{
+              showSubHover();
+              showNew7();
+              }} style={{backgroundColor:  newin7 ? 'grey' : 'black'}} className="NewHover">
               <p>RE-ZAYRA</p>
             </div>
-            <div onMouseEnter={showSubHover} className="NewHover">
+            <div onClick={()=>{
+              showSubHover();
+              showNew8();
+              }} style={{backgroundColor:  newin8 ? 'grey' : 'black'}} className="NewHover">
               <p>SALE</p>
             </div>
           </div>
@@ -436,11 +549,16 @@ export function Header({ updateQuantity }) {
                 />
               </button>
               <input
+                onKeyDown={renderSearchParam}
+                value={searchParam}
+                onChange={getSearchParam}
                 className="main-search-bar"
                 type="search"
                 placeholder="Search for products, brands, or categories"
               />
-              <button className="search-button">
+              <button onClick={()=>{
+                toast.info(`${searchParam} not yet available in store`)
+              }} className="search-button">
                 <img
                   src="images/icons/search_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg"
                   alt="searchIcon"
@@ -458,7 +576,7 @@ export function Header({ updateQuantity }) {
           </div>
 
           {isVisible && (
-            <div onMouseLeave={exitSubHover} className="subHover">
+            <div className="subHover">
               <div className="brandsA-Z">
                 <b>
                   <h4>Brands A-Z</h4>
