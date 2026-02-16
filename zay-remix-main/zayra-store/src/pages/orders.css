@@ -92,16 +92,17 @@ button {
 
 .contactDetails {
   display: flex;
+  border-radius: 5px;
   flex-direction: column;
   gap: 20px;
   background-color: rgb(255, 253, 253);
-  border-radius: 5px;
   padding-right: 3px;
   max-height: 650px;
 }
 
 .formSub {
   background-color: rgb(255, 253, 253);
+  border-radius: 5px;
   color: black;
   padding: 30px 35px 30px 30px;
   width: 89%;

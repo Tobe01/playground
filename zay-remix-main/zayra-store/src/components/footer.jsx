@@ -216,7 +216,7 @@ export function Footer() {
             <div className="brandOwnership">
               <h2>Zayra&trade;</h2>
               <p>
-                Developed with <span className="hearts">&hearts;</span> by Tobe <span>&copy;{new Date().getFullYear()}</span>
+                Developed with <span className="hearts">&hearts;</span> by <a href="https://linkedin.com/in/tobechiduru">Tobechi Duru</a> <span>&copy;{new Date().getFullYear()}</span>
               </p>
             </div>
           </div>
