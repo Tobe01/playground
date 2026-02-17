@@ -191,6 +191,10 @@ button {
   visibility: visible;
 }
 
+.formField span{
+  color: red;
+}
+
 .formField p {
   font-weight: 500;
   font-size: 19px;
@@ -321,18 +325,20 @@ button {
   justify-content: center;
   gap: 5px;
   width: 101.5%;
-  padding: 16px 0;
   border: none;
   background-color: black;
   color: white;
   border-radius: 3px;
-  font-size: 18px;
+  font-size: 21px;
   cursor: pointer;
 }
 
-.submitOrder button img,
 .purchase--btn img{
   margin-bottom: 2px;
+}
+
+.submitOrder button img{
+  width: 24px;
 }
 
 .submitOrder button:hover,

@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import { toast } from "react-toastify";
 import { activateHamburger, closeWindow } from "./drop-menu/dropdown";
 import { useState, useEffect } from "react";
 import "./header.css";
@@ -68,7 +67,7 @@ export function Header({ updateQuantity }) {
 
   function renderSearchParam(event){
     if(event.key === "Enter"){
-      toast.info(`${searchParam} not yet available in store`);
+      alert(`${searchParam} not yet available in store`);
     }
   }
 
@@ -188,7 +187,7 @@ export function Header({ updateQuantity }) {
           <div className="mobile-searchbar-main">
             <div className="mobile-search-bar">
               <div onClick={()=>{
-                toast.info(`${searchParam} not yet available in store`);
+                alert(`${searchParam} not yet available in store`);
               }} className="first-button">
                 <img
                   src="images/icons/search_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg"
@@ -557,7 +556,7 @@ export function Header({ updateQuantity }) {
                 placeholder="Search for products, brands, or categories"
               />
               <button onClick={()=>{
-                toast.info(`${searchParam} not yet available in store`)
+                alert(`${searchParam} not yet available in store`)
               }} className="search-button">
                 <img
                   src="images/icons/search_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg"

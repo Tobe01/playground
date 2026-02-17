@@ -64,7 +64,7 @@ export function ViewCard({
       <div className="viewSub">
         <div onClick={onClickAction} className="backToShop">
           <img
-            src="images/icons/close_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg"
+            src="../../public/images/icons/CLOSE-BLACK.svg"
             alt="arrowBack"
           />
         </div>

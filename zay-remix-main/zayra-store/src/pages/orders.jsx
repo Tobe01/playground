@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import dayjs from "dayjs";
 import { Link } from "react-router-dom";
 import { OrdersHeader } from "../components/orders-header";
@@ -28,6 +28,75 @@ export function Orders() {
   const [spinner, setSpinner] = useState(false);
   const [sendPay, setSendPay] = useState(false);
   const [confirmSpinner, setConfirmSpinner] = useState(false);
+
+  const nameRef = useRef(null);
+  const lastNameRef = useRef(null);
+  const countryRef = useRef(null);
+  const phoneRef = useRef(null);
+  const paymentMethodRef = useRef(null);
+  const houseAddressRef = useRef(null);
+  const cityRef = useRef(null);
+  const emailAddressRef = useRef(null);
+  const landMarkRef = useRef(null);
+  const spinnerRef = useRef(null);
+
+  function enterfirstName(event){
+    if(event.key === "Enter"){
+      event.preventDefault();
+      lastNameRef.current.focus();
+    }
+  }
+
+  function enterlastName(event){
+    if(event.key === "Enter"){
+      event.preventDefault();
+      countryRef.current.focus();
+    }
+  }
+  function enterCountry(event){
+    if(event.key === "Enter"){
+      event.preventDefault();
+      emailAddressRef.current.focus();
+    }
+  }
+  function enterEmail(event){
+    if(event.key === "Enter"){
+      event.preventDefault();
+      houseAddressRef.current.focus();
+    }
+  }
+  function enterAddress(event){
+    if(event.key === "Enter"){
+      event.preventDefault();
+      phoneRef.current.focus();
+    }
+  }
+  function enterPhone(event){
+    if(event.key === "Enter"){
+      event.preventDefault();
+      cityRef.current.focus();
+    }
+  }
+  function enterCity(event){
+    if(event.key === "Enter"){
+      event.preventDefault();
+      landMarkRef.current.focus();
+    }
+  }
+  function enterLandmark(event){
+    if(event.key === "Enter"){
+      event.preventDefault();
+      paymentMethodRef.current.focus();
+    }
+  }
+
+  function proceedCheckout(event){
+    if(event.target === "Enter"){
+      event.preventDefault();
+      spinnerRef.current.focus();
+      showSpinner();
+    }
+  }
 
   const [checkoutItems] = useState(() => getCartItems());
   const cartCount = getCartQuantity(checkoutItems);
@@ -568,16 +637,13 @@ export function Orders() {
                   <div className="contacts">
                     <p>Contact Details</p>
                     <div>
-                      <label>First Name</label>
+                      <label>First Name <span>*</span></label>
                       <div>
                         <input
+                          onKeyDown={enterfirstName}
+                          ref={nameRef}
                           onChange={getFirstName}
                           value={firstName}
-                          onKeyDown={(event)=>{
-                            if(event.key === "Enter"){
-                              console.log("Good to go");
-                            }
-                          }}
                           type="text"
                           name="first name"
                           inputMode="text"
@@ -588,9 +654,11 @@ export function Orders() {
                     </div>
 
                     <div>
-                      <label>Last Name</label>
+                      <label>Last Name <span>*</span></label>
                       <div>
                         <input
+                          onKeyDown={enterlastName}
+                          ref={lastNameRef}
                           onChange={getLastName}
                           value={lastName}
                           type="text"
@@ -603,8 +671,10 @@ export function Orders() {
                     </div>
 
                     <div>
-                      <label>Country</label>
+                      <label>Country <span>*</span></label>
                       <select
+                        onKeyDown={enterCountry}
+                        ref={countryRef}
                         onChange={getCountry}
                         value={country}
                         name="Country"
@@ -619,9 +689,11 @@ export function Orders() {
                     </div>
 
                     <div>
-                      <label>Email</label>
+                      <label>Email <span>*</span></label>
                       <div>
                         <input
+                          onKeyDown={enterEmail}
+                          ref={emailAddressRef}
                           onChange={getEmail}
                           value={emailAddress}
                           type="text"
@@ -640,14 +712,16 @@ export function Orders() {
                     <p>Contact Address</p>
                     <div className="closeForm">
                       <div>
-                        <label>Delivery Address</label>
+                        <label>Delivery Address <span>*</span></label>
                         <div>
                           <input
+                            onKeyDown={enterAddress}
+                            ref={houseAddressRef}
                             onChange={getAddress}
-                            value={address}
+                            value={houseAddress}
                             type="text"
                             inputMode="text"
-                            name="Address"
+                            name="house address"
                             placeholder="Enter Delivery Address"
                             required
                           />
@@ -655,13 +729,15 @@ export function Orders() {
                       </div>
 
                       <div>
-                        <label>Phone Number</label>
+                        <label>Phone Number <span>*</span></label>
                         <div>
                           <input
+                            onKeyDown={enterPhone}
+                            ref={phoneRef}
                             onChange={getPhone}
                             value={phone}
                             type="number"
-                            name="phone number"
+                            name="phone"
                             inputMode="numeric"
                             placeholder="Enter Valid Phone Number"
                             required
@@ -670,9 +746,11 @@ export function Orders() {
                       </div>
 
                       <div>
-                        <label>City</label>
+                        <label>City <span>*</span></label>
                         <div>
-                          <input
+                          <input 
+                            onKeyDown={enterCity}
+                            ref={cityRef}
                             onChange={getCity}
                             value={city}
                             type="text"
@@ -688,6 +766,8 @@ export function Orders() {
                         <label>Landmark (optional)</label>
                         <div>
                           <input
+                            onKeyDown={enterLandmark}
+                            ref={landMarkRef}
                             type="text"
                             inputMode="text"
                             name="city"
@@ -788,6 +868,7 @@ export function Orders() {
                   <img src="images/payments/visa.webp" alt="paymentsLogo" />
                 </div>
                 <select
+                  ref={paymentMethodRef}
                   onChange={getPaymentMethod}
                   value={payMethod}
                   className="selectFund"
@@ -804,7 +885,10 @@ export function Orders() {
               </div>
 
               <div className="submitOrder">
-                <button onClick={()=>{
+                <button
+                  onKeyDown={proceedCheckout} 
+                  ref={spinnerRef}
+                  onClick={()=>{
                     showSpinner()
                   }}>
                   {spinner && (
