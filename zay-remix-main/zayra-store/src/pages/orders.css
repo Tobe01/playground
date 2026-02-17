@@ -503,9 +503,10 @@ button {
 .mainDetailsContainer{
  background-color: rgb(241, 239, 239);
  font-size: 15px;
- padding: 10px;
+ padding: 15px;
  height: 60%;
  margin-top: 10px;
+ border-radius: 5px;
 }
 
 .mainDetailsContainer h1{

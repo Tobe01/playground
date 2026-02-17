@@ -13,9 +13,11 @@ export function WishList() {
   return (
     <>
       <title>Wishes</title>
-      {/* <!-- Empty Cart Display --> */}
+      
       <WishHeader />{" "}
-      <div className="emptyWishes">
+
+      {/* <!-- Empty Cart Display --> */}
+      <section className="emptyWishes">
         <img
           src="images/icons/personal_bag_question_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg"
           alt="emptyLuggage"
@@ -24,9 +26,11 @@ export function WishList() {
         <Link to="/shop">
           <button>BROWSE THE SHOP</button>
         </Link>
-      </div>
+      </section>
+
       <main className="wishU">
         <section className="wishlist-container">
+
           <div className="wishCont">
             <div className="wishCard">
               <div className="imageDesc">
@@ -45,7 +49,7 @@ export function WishList() {
                   </div>
                   <button className="js-deleteWish">
                     <img
-                      src="images/icons/delete_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.svg"
+                      src="images/icons/delete_24dp_8B1A10_FILL0_wght400_GRAD0_opsz24.svg"
                       alt="deleteIcon"
                     />
                   </button>
@@ -76,7 +80,7 @@ export function WishList() {
                   </div>
                   <button className="js-deleteWish">
                     <img
-                      src="images/icons/delete_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.svg"
+                      src="images/icons/delete_24dp_8B1A10_FILL0_wght400_GRAD0_opsz24.svg"
                       alt="deleteIcon"
                     />
                   </button>
@@ -88,6 +92,7 @@ export function WishList() {
               </div>
             </div>
           </div>
+
         </section>
       </main>
     </>

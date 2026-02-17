@@ -178,11 +178,11 @@
   background-color: rgb(202, 200, 200);
 }
 
-.deleteContainer button:hover {
+.deleteContainer button:hover{
   background-color: rgb(184, 182, 182);
 }
 
-.deleteContainer button:active {
+.deleteContainer button:active{
   background-color: rgb(202, 200, 200);
 }
 

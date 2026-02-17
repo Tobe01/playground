@@ -134,18 +134,18 @@ p {
 .imageDesc button {
   border: 0;
   border-radius: 4px;
-  background-color: rgb(199, 18, 18);
+  background-color: rgb(202, 200, 200);
   color: white;
   margin-bottom: auto;
   padding: 5px 8px;
 }
 
 .imageDesc button:hover {
-  background-color: rgb(196, 23, 23);
+  background-color: rgb(184, 182, 182);
 }
 
 .imageDesc button:active {
-  background-color: rgb(221, 21, 21);
+  background-color: rgb(202, 200, 200);
 }
 
 .imageContainer {
