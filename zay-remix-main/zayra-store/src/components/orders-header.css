@@ -143,34 +143,6 @@ button {
   justify-content: space-between;
 }
 
-/* .selectDelivery button:nth-child(2) {
-  display: flex;
-  background-color: white;
-  color: rgb(173, 173, 173);
-  padding: 10px 48px;
-  border: 1px solid rgb(173, 173, 173);
-  border-radius: 3px;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  white-space: nowrap;
-  gap: 5px;
-} */
-
-/* .selectDelivery button {
-  display: flex;
-  background-color: white;
-  color: black;
-  padding: 10px 48px;
-  border: 1px solid black;
-  border-radius: 3px;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  white-space: nowrap;
-  gap: 5px;
-} */
-
 .selectDelivery button p {
   font-weight: 600;
   font-size: 16px;
@@ -598,10 +570,13 @@ button {
   border: 0;
   outline: none;
   color: #ffffff;
-  font-size: 13px;
-  font-weight: 700;
-  background: linear-gradient(180deg, #363636 0%, #1B1B1B 50%, #000000 100%);
-  box-shadow: 0px 0px 0px 0px #FFFFFF, 0px 0px 0px 0px #000000;
+  font-size: 20px;
+  font-weight: 500;
+  background-color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
   transition: all 0.3s cubic-bezier(0.15, 0.83, 0.66, 1);
 }
 
@@ -618,4 +593,5 @@ button {
 
 .input_field[type=number] {
   -moz-appearance: textfield;
+  appearance: textfield;
 }

@@ -13,14 +13,21 @@ export function Orders() {
   const [contacts, setContacts] = useState(true);
   const [contactDetails, setContactDetails] = useState(false);
 
-  const [firstName, setFirstName] = useState();
-  const [lastName, setLastName] = useState();
-  const [country, setCountry] = useState();
-  const [phone, setPhone] = useState();
-  const [payMethod, setPayMethod] = useState();
-  const [houseAddress, setHouseAddress] = useState();
-  const [city, setCity] = useState();
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [country, setCountry] = useState('Select Country');
+  const [phone, setPhone] = useState('');
+  const [payMethod, setPayMethod] = useState('Select your prefered payment method');
+  const [houseAddress, setHouseAddress] = useState('');
+  const [city, setCity] = useState('');
+  const [emailAddress, setEmailAddress] = useState('');
+  const [cardNumber, setCardNumber] = useState('');
+  const [expiryDate, setExpiryDate] = useState('');
+  const [cvv, setCvv] = useState('');
   const [showCheckoutModal, setShowCheckoutModal] = useState(false);
+  const [spinner, setSpinner] = useState(false);
+  const [sendPay, setSendPay] = useState(false);
+  const [confirmSpinner, setConfirmSpinner] = useState(false);
 
   const [checkoutItems] = useState(() => getCartItems());
   const cartCount = getCartQuantity(checkoutItems);
@@ -35,6 +42,11 @@ export function Orders() {
   // Day js integration for date
   const currentDate = dayjs();
   const formatDate = currentDate.format("MMMM, D YYYY");
+
+  const payDate = dayjs();
+  const successDate = payDate.format("M/D/YYYY");
+  const orderRef = crypto.randomUUID();
+  const refNumber = Math.random();
 
   function getFirstName(event) {
     setFirstName(event.target.value);
@@ -85,15 +97,6 @@ export function Orders() {
       setContacts(false);
       setAddress(true);
     }
-
-    // const contacts = {
-    //   firstName,
-    //   lastName,
-    //   country,
-    //   phone
-    // }
-
-    // localStorage.setItem('contacts', JSON.stringify(contacts));
   }
 
   function showContacts() {
@@ -101,15 +104,50 @@ export function Orders() {
       setContacts(true);
       setAddress(false);
     }
-
-    // const stored = localStorage.getItem("contacts");
-    // stored ? JSON.parse(stored) : '';
   }
 
-  function showContactDetails() {
-    if (contactDetails === false) {
-      setContactDetails(true);
+   function showSpinner(){
+    if(firstName === ''
+       || lastName === '' 
+       || country === 'Select Country' 
+       || phone === '' 
+       || houseAddress === '' 
+       || city === '' 
+       || emailAddress === ''
+       || payMethod === 'Select your prefered payment method'
+      ){
+      alert("please fill up required fields to proceed");
+    } else {
+      setSpinner(true);
+
+      setTimeout(()=>{
+        if(contactDetails === false){
+          setContactDetails(true);
+          setSpinner(false);
+        }
+      }, 2000);
     }
+
+  }
+
+  function makePayment(){
+    if(cardNumber === '' || expiryDate === '' || cvv === ''){
+      alert("please fill up required fields to proceed");
+    } else {
+      setConfirmSpinner(true);
+
+      setTimeout(()=>{
+      if(sendPay === false){
+        setSendPay(true);
+          setConfirmSpinner(false);
+          setShowCheckoutModal(false);
+        }
+      }, 3000);
+    }
+  }
+
+  function closePayment(){
+    setSendPay(false);
   }
 
   function closeContactDetails() {
@@ -127,6 +165,22 @@ export function Orders() {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  function getEmail(event){
+    setEmailAddress(event.target.value);
+  }
+
+  function getCardNumber(event){
+    setCardNumber(event.target.value);
+  }
+
+  function getExpiryDate(event){
+    setExpiryDate(event.target.value);
+  }
+
+  function getCvv(event){
+    setCvv(event.target.value);
+  }
 
   return (
     <>
@@ -356,6 +410,8 @@ export function Orders() {
                     Card Number
                   </label>
                   <input
+                    onChange={getCardNumber}
+                    value={cardNumber}
                     id="card_number"
                     className="input_field"
                     type="number"
@@ -368,12 +424,16 @@ export function Orders() {
                   <label className="input_label">Expiry Date / CVV</label>
                   <div className="split">
                     <input
+                      onChange={getExpiryDate}
+                      value={expiryDate}
                       className="expiryDate"
                       type="text"
                       name="expiry"
                       placeholder="01/23"
                     />
                     <input
+                      onChange={getCvv}
+                      value={cvv}
                       className="cardNumber"
                       type="number"
                       name="cvv"
@@ -383,12 +443,86 @@ export function Orders() {
                 </div>
               </div>
 
-              <button className="purchase--btn" type="button">
-                Checkout
+              <button className="purchase--btn" type="button"
+                onClick={()=>{
+                 makePayment();
+                }} 
+                >
+                {confirmSpinner && (
+                  <span>
+                    <img src="../../public/images/icons/loading-spinner.gif" alt="loading spinner" width={30} />
+                  </span> 
+                )}
+                Make Payment
               </button>
             </form>
           </div>
         </div>
+      )}
+
+      {sendPay && (
+        <section className="successConfirmModal">
+          <div className="successMain">
+            <div className="successImageCont">
+              <img src="../../public/images/icons/original-17b2b7b1f13e997e74325f1209a5894a.gif"/>
+              <div onClick={closePayment} className="closyy">
+               <img src="../../public/images/icons/CLOSE-BLACK.svg" alt="closeModal" width={30} />
+              </div>
+              <div className="confidi">
+                <h1>Payment Complete</h1>
+                <div className="spannn">
+                  <p><span>{firstName}</span> your payment has been completed successfully. A confrimation mail has been sent to <span>{emailAddress}</span></p>
+                </div>
+              </div>
+            </div>
+
+            <div className="orderCredentials">
+              <h1>Order Details</h1>
+              <div className="credentialsDetails">
+
+                  <div className="credenSub">
+                    <div>
+                      ORDER REF
+                    </div>
+                    <div>
+                      {orderRef}
+                    </div>
+                  </div>
+
+                  <div className="credenSub">
+                    <div>
+                      ORDER DATE
+                    </div>
+                    <div>
+                      {successDate}
+                    </div>
+                  </div>
+
+                  <div className="credenSub">
+                    <div>
+                      PAYMENT TYPE
+                    </div>
+                    <div>
+                      {payMethod}
+                    </div>
+                  </div>
+
+                  <div className="credenSub">
+                    <div>
+                      INVOICE NO
+                    </div>
+                    <div>
+                      {`N${refNumber}`}
+                    </div>
+                  </div>
+
+              </div>
+              <Link to="/shop">
+               <button>Continue to Shop</button>
+              </Link>
+            </div>
+          </div>
+        </section>
       )}
 
       <OrdersHeader />
@@ -438,6 +572,12 @@ export function Orders() {
                       <div>
                         <input
                           onChange={getFirstName}
+                          value={firstName}
+                          onKeyDown={(event)=>{
+                            if(event.key === "Enter"){
+                              console.log("Good to go");
+                            }
+                          }}
                           type="text"
                           name="first name"
                           inputMode="text"
@@ -452,6 +592,7 @@ export function Orders() {
                       <div>
                         <input
                           onChange={getLastName}
+                          value={lastName}
                           type="text"
                           name="surname"
                           inputMode="text"
@@ -465,6 +606,7 @@ export function Orders() {
                       <label>Country</label>
                       <select
                         onChange={getCountry}
+                        value={country}
                         name="Country"
                         id="Country"
                         required
@@ -477,14 +619,15 @@ export function Orders() {
                     </div>
 
                     <div>
-                      <label>Phone Number</label>
+                      <label>Email</label>
                       <div>
                         <input
-                          onChange={getPhone}
-                          type="number"
-                          name="phone number"
-                          inputMode="numeric"
-                          placeholder="Enter Valid Phone Number"
+                          onChange={getEmail}
+                          value={emailAddress}
+                          type="text"
+                          name="Email"
+                          inputMode="text"
+                          placeholder="Enter Valid Email Address"
                           required
                         />
                       </div>
@@ -497,28 +640,31 @@ export function Orders() {
                     <p>Contact Address</p>
                     <div className="closeForm">
                       <div>
-                        <label>Address Line 1</label>
+                        <label>Delivery Address</label>
                         <div>
                           <input
                             onChange={getAddress}
+                            value={address}
                             type="text"
                             inputMode="text"
                             name="Address"
-                            placeholder="Enter Contact  Address 1"
+                            placeholder="Enter Delivery Address"
                             required
                           />
                         </div>
                       </div>
 
                       <div>
-                        <label>Address Line 2 (optional)</label>
+                        <label>Phone Number</label>
                         <div>
                           <input
-                            type="text"
-                            inputMode="text"
-                            name="city"
+                            onChange={getPhone}
+                            value={phone}
+                            type="number"
+                            name="phone number"
+                            inputMode="numeric"
+                            placeholder="Enter Valid Phone Number"
                             required
-                            placeholder="Enter Contact  Address 2"
                           />
                         </div>
                       </div>
@@ -528,6 +674,7 @@ export function Orders() {
                         <div>
                           <input
                             onChange={getCity}
+                            value={city}
                             type="text"
                             inputMode="text"
                             name="city"
@@ -569,7 +716,7 @@ export function Orders() {
               <div className="orderedItems">
                 {checkoutItems.map((cartItem) => {
                   return (
-                    <div className="checkoutTop">
+                    <div key={cartItem.id} className="checkoutTop">
                       <div className="checkoutImagee">
                         <img
                           src={`images/shopItems/${cartItem.Image}`}
@@ -642,6 +789,7 @@ export function Orders() {
                 </div>
                 <select
                   onChange={getPaymentMethod}
+                  value={payMethod}
                   className="selectFund"
                   name="payment method"
                   required
@@ -656,7 +804,16 @@ export function Orders() {
               </div>
 
               <div className="submitOrder">
-                <button onClick={showContactDetails}>Make Payment</button>
+                <button onClick={()=>{
+                    showSpinner()
+                  }}>
+                  {spinner && (
+                    <span>
+                      <img src="../../public/images/icons/loading-spinner.gif" alt="loading spinner" width={30} />
+                    </span> 
+                  )}
+                  Proceed to Checkout
+                </button>
               </div>
             </div>
           </div>
