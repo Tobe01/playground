@@ -1,6 +1,10 @@
 import { Link } from "react-router-dom";
 import { activateHamburger, closeWindow } from "./drop-menu/dropdown";
 import { useState, useEffect } from "react";
+import {
+  getWishlistQuantity,
+  subscribeToWishlistChanges,
+} from "../../data/wishlist";
 import "./header.css";
 import "./interval.css";
 import "./sub-header.css";
@@ -9,6 +13,7 @@ import "../media-queries/header.css";
 
 export function Header({ updateQuantity }) {
   const [search, setSearch] = useState(false);
+  const [wishQuantity, setWishQuantity] = useState(() => getWishlistQuantity());
   const [isChanged, setIsChanged] = useState(false);
   const [isVisible, setIsvisible] = useState(false);
   const [searchParam, setSearchParam] = useState();
@@ -40,6 +45,14 @@ export function Header({ updateQuantity }) {
       clearInterval(interval);
     };
   }, [isChanged]);
+
+  useEffect(() => {
+    setWishQuantity(getWishlistQuantity());
+
+    return subscribeToWishlistChanges(() => {
+      setWishQuantity(getWishlistQuantity());
+    });
+  }, []);
 
   function showMainSearch() {
     if (search === false) {
@@ -168,7 +181,7 @@ export function Header({ updateQuantity }) {
                     src="images/icons/favorite_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg"
                     alt="favIcon"
                   />
-                  <div className="quantity">0</div>
+                  <div className="quantity">{wishQuantity}</div>
                 </span>
               </Link>
 
@@ -461,7 +474,7 @@ export function Header({ updateQuantity }) {
                       src="images/icons/favorite_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg"
                       alt="wish-list"
                     />
-                    <div className="quantity">0</div>
+                    <div className="quantity">{wishQuantity}</div>
                   </span>
                 </Link>
                 <Link to="/checkout">

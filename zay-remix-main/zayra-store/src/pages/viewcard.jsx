@@ -1,5 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import {
+  isInWishlist,
+  subscribeToWishlistChanges,
+  toggleWishlistItem,
+} from "../../data/wishlist";
 
 export function ViewCard({
   image1,
@@ -18,6 +23,18 @@ export function ViewCard({
   addItem,
 }) {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [isWished, setIsWished] = useState(() => isInWishlist(image1));
+  const likeToggleId = `like-toggle-${String(image1).replace(/[^a-zA-Z0-9_-]/g, "-")}`;
+
+  useEffect(() => {
+    setIsWished(isInWishlist(image1));
+  }, [image1]);
+
+  useEffect(() => {
+    return subscribeToWishlistChanges(() => {
+      setIsWished(isInWishlist(image1));
+    });
+  }, [image1]);
 
   function rightSlide() {
     setCurrentSlide((prev) => (prev + 1) % 3);
@@ -36,6 +53,26 @@ export function ViewCard({
     });
 
     toast.success(`${itemName}, added to cart`);
+  }
+
+  function handleWishToggle() {
+    const nextWishes = toggleWishlistItem({
+      Image: image1,
+      itemName,
+      itemDescription,
+      priceCents,
+      quantity: 1,
+    });
+
+    const hasItem = nextWishes.some((wishItem) => wishItem.Image === image1);
+    setIsWished(hasItem);
+
+    if (hasItem) {
+      toast.success(`${itemName}, added to wishlist`);
+      return;
+    }
+
+    toast.info(`${itemName}, removed from wishlist`);
   }
 
   function increaseQuantity() {
@@ -119,8 +156,14 @@ export function ViewCard({
 
                   {/* From Uiverse.io by SalladShooter */}
                   <div className="like-wrapper">
-                    <input className="check" type="checkbox" id="like-toggle" />
-                    <label className="container" htmlFor="like-toggle">
+                    <input
+                      className="check"
+                      type="checkbox"
+                      id={likeToggleId}
+                      checked={isWished}
+                      onChange={handleWishToggle}
+                    />
+                    <label className="container" htmlFor={likeToggleId}>
                       <svg
                         viewBox="0 0 512 512"
                         xmlns="http://www.w3.org/2000/svg"

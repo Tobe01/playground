@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import dayjs from "dayjs";
 import { Link } from "react-router-dom";
 import { OrdersHeader } from "../components/orders-header";
-import { getCartItems, getCartQuantity } from "../../data/cart";
+import { clearCartItems, getCartItems, getCartQuantity } from "../../data/cart";
 import "./orders.css";
 import "../media-queries/orders.css";
 import "../media-queries/orders-headers.css";
@@ -99,7 +99,7 @@ export function Orders() {
     }
   }
 
-  const [checkoutItems] = useState(() => getCartItems());
+  const [checkoutItems, setCheckoutItems] = useState(() => getCartItems());
   const cartCount = getCartQuantity(checkoutItems);
   const subtotalCents = checkoutItems.reduce(
     (total, item) =>
@@ -250,6 +250,12 @@ export function Orders() {
 
   function getCvv(event){
     setCvv(event.target.value);
+  }
+
+  function handleContinueToShop() {
+    clearCartItems();
+    setCheckoutItems([]);
+    setSendPay(false);
   }
 
   return (
@@ -588,7 +594,7 @@ export function Orders() {
 
               </div>
               <Link to="/shop">
-               <button>Continue to Shop</button>
+               <button onClick={handleContinueToShop}>Continue to Shop</button>
               </Link>
             </div>
           </div>

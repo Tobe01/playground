@@ -28,6 +28,11 @@ export function saveCartItems(items) {
   localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(items));
 }
 
+export function clearCartItems() {
+  saveCartItems([]);
+  return [];
+}
+
 export function addToCart(product) {
   const currentCart = getCartItems();
   const existingItem = currentCart.find((item) => item.Image === product.Image);
