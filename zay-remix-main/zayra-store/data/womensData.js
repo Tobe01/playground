@@ -151,7 +151,7 @@ export const womensData = [{
     reviews: 259
   },
   itemCategory: "womens's clothing",
-  productDesc: 'Light weight & soft fabric for breathable and comfortable wearing. And Solid stitched shirts with round neck made for durability and a great fit for casual fash.'
+  productDesc: 'Light weight & soft fabric for breathable and comfortable wearing.'
 }, {
   id: crypto.randomUUID(),
   images: {

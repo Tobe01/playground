@@ -49,7 +49,7 @@ export function Checkout() {
 
   function paymentNotAvailable(){
     if(isAvailable === false){
-      setIsAvailable(toast.info("Payment Method Not available yet!", {
+      setIsAvailable(alert("Payment Method Not available yet!", {
        position: 'top-center'
       }));
     }
@@ -57,7 +57,7 @@ export function Checkout() {
 
   function paymentUnavailable(){
     if(unAvailable === false){
-      setUnAvailable(toast.info("Payment Method Not available yet!", {
+      setUnAvailable(alert("Payment Method Not available yet!", {
         position: 'top-center'
       }))
     }

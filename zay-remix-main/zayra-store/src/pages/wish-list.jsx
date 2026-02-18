@@ -57,7 +57,8 @@ export function WishList() {
         <section
           className="emptyWishes"
           style={{ visibility: "visible", display: "flex" }}
-        >
+        > 
+        <div>
           <img
             src="images/icons/personal_bag_question_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg"
             alt="emptyLuggage"
@@ -66,6 +67,7 @@ export function WishList() {
           <Link to="/shop">
             <button>BROWSE THE SHOP</button>
           </Link>
+        </div>
         </section>
       )}
 

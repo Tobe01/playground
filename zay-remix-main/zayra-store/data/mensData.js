@@ -174,7 +174,7 @@ export const mensData = [{
     reviews: 759
   },
   itemCategory: "men's clothing",
-  productDesc: 'Three-button henley placket, light weight & soft fabric for breathable and comfortable wearing. And Solid stitched shirts with round neck made for durability and a great fit for casual fash.'
+  productDesc: 'Three-button henley placket.'
 }, {
   id: crypto.randomUUID(),
   images: {

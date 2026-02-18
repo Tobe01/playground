@@ -1,8 +1,16 @@
+import { useState } from 'react';
 import { Link } from "react-router-dom";
 import "../media-queries/footer.css";
 import "./footer.css";
 
 export function Footer() {
+  
+  const [newsLetter, setNewsLetter] = useState('');
+
+  function getNewsLetter(event){
+    setNewsLetter(event.target.value);
+  }
+
   return (
     <footer>
       <div className="footerTop">
@@ -145,10 +153,23 @@ export function Footer() {
                   <option>Men</option>
                 </select>
                 <input
+                  onKeyDown={(event)=>{
+                    if(event.key === "Enter"){
+                      alert(`${newsLetter} successfully signed up`);
+                      setNewsLetter('');
+                    }
+                  }}
+                  onChange={getNewsLetter}
+                  value={newsLetter}
                   type="search"
                   placeholder="Enter your email address..."
                 />
-                <button className="submit-btn">SUBMIT</button>
+                <button
+                  onClick={()=>{
+                    alert(`${newsLetter} successfully signed up`);
+                    setNewsLetter('');
+                  }} 
+                  className="submit-btn">SUBMIT</button>
               </div>
 
               <div className="menWomenContainer">

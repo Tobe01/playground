@@ -329,7 +329,7 @@ export const shopData = [{
     reviews: 759
   },
   itemCategory: "men's clothing",
-  productDesc: 'Three-button henley placket, light weight & soft fabric for breathable and comfortable wearing.'
+  productDesc: 'Three-button henley placket.'
 }, {
   id: crypto.randomUUID(),
   images: {
